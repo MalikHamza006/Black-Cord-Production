@@ -1,28 +1,22 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Clock, Eye, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Helper function to convert Google Drive link to embeddable format
 const getGoogleDriveEmbedUrl = (url: string) => {
-  // Check if it's already an embed URL
   if (url.includes("/preview")) return url;
   
-  // Extract file ID from various Google Drive URL formats
   let fileId = "";
-  
-  // Format: https://drive.google.com/file/d/FILE_ID/view
   const fileIdMatch = url.match(/\/file\/d\/([^/]+)/);
   if (fileIdMatch) {
     fileId = fileIdMatch[1];
   }
   
-  // Format: https://drive.google.com/open?id=FILE_ID
   const openIdMatch = url.match(/[?&]id=([^&]+)/);
   if (openIdMatch) {
     fileId = openIdMatch[1];
   }
   
-  // Format: https://drive.google.com/uc?id=FILE_ID
   const ucIdMatch = url.match(/[?&]id=([^&]+)/);
   if (ucIdMatch) {
     fileId = ucIdMatch[1];
@@ -32,44 +26,126 @@ const getGoogleDriveEmbedUrl = (url: string) => {
     return `https://drive.google.com/file/d/${fileId}/preview`;
   }
   
-  // If no pattern matches, return original URL
   return url;
 };
 
-// Get aspect ratio based on category
 const getAspectRatio = (category: string): string => {
   switch (category) {
     case "Reels":
-      return "aspect-[9/16]"; // Vertical for TikTok/Reels/Shorts
-    case "VSL Videos":
-      return "aspect-video"; // 16:9 for sales videos
-    case "Weddings":
-      return "aspect-video"; // 16:9 cinematic
-    case "Podcasts":
-      return "aspect-video"; // 16:9 YouTube format
-    case "CashCow":
-      return "aspect-video"; // 16:9 documentary style
+      return "aspect-[9/16]";
     default:
       return "aspect-video";
   }
 };
 
-// Get container width class based on category
-const getContainerWidthClass = (category: string): string => {
+// Get card width based on category
+const getCardWidth = (category: string, isMobile: boolean): string => {
+  if (!isMobile) {
+    switch (category) {
+      case "Reels":
+        return 'w-[200px] md:w-[220px]';
+      default:
+        return 'w-[280px] md:w-[320px]';
+    }
+  }
+  
   switch (category) {
     case "Reels":
-      return "max-w-[280px] sm:max-w-[320px]"; // Tighter for vertical cards
+      return 'w-[160px] sm:w-[180px]';
     default:
-      return "w-full"; // Full width for landscape cards
+      return 'w-[75vw] sm:w-[65vw]';
   }
 };
 
-// Video data structure per category with Google Drive links
+// Get card padding based on category
+const getCardPadding = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'p-1.5 sm:p-2';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'p-2 sm:p-2.5';
+  }
+  return 'p-3 sm:p-4';
+};
+
+// Get font sizes based on category
+const getTitleSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'text-[9px] sm:text-[10px]';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'text-[10px] sm:text-[11px]';
+  }
+  return 'text-xs sm:text-sm';
+};
+
+const getAuthorSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'text-[7px] sm:text-[8px]';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'text-[8px] sm:text-[9px]';
+  }
+  return 'text-[9px] sm:text-[10px]';
+};
+
+// Get play button size based on category
+const getPlayButtonSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'w-8 h-8 sm:w-10 sm:h-10';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'w-10 h-10 sm:w-12 sm:h-12';
+  }
+  return 'w-12 h-12 sm:w-14 sm:h-14';
+};
+
+const getPlayIconSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'w-3.5 h-3.5 sm:w-4 sm:h-4';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'w-4 h-4 sm:w-5 sm:h-5';
+  }
+  return 'w-5 h-5 sm:w-6 sm:h-6';
+};
+
+// Get metadata chip size
+const getChipSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'px-1.5 py-0.5';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'px-2 py-0.5';
+  }
+  return 'px-2 py-0.5';
+};
+
+const getChipTextSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'text-[8px]';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'text-[9px]';
+  }
+  return 'text-[10px]';
+};
+
+const getChipIconSize = (category: string, isMobile: boolean): string => {
+  if (category === "Reels" && isMobile) {
+    return 'w-1.5 h-1.5';
+  }
+  if (category === "Reels" && !isMobile) {
+    return 'w-2 h-2';
+  }
+  return 'w-2.5 h-2.5';
+};
+
 const videoData = {
   Reels: [
     {
       id: 1,
-      title: "UI ANIMATION MASTERCLASS",
+      title: "UI ANIMATION",
       author: "Sarah Chen",
       explanation: "From 10K to 2M+ subscribers using advanced short-form content strategy.",
       duration: "0:45",
@@ -79,8 +155,8 @@ const videoData = {
     },
     {
       id: 2,
-      title: "BRAND STORYTELLING BREAKDOWN",
-      author: "Marcus Rodriguez",
+      title: "BRAND STORY",
+      author: "Marcus R.",
       explanation: "How we turned boring product demos into viral content that generates $500K+.",
       duration: "1:20",
       views: "1.8M",
@@ -89,8 +165,8 @@ const videoData = {
     },
     {
       id: 3,
-      title: "GROWTH HACKING SECRETS",
-      author: "Emily Johnson",
+      title: "GROWTH HACK",
+      author: "Emily J.",
       explanation: "Sustainability content that actually moves people to action and drives sales.",
       duration: "0:58",
       views: "3.1M",
@@ -99,8 +175,8 @@ const videoData = {
     },
     {
       id: 4,
-      title: "ENGAGEMENT LOOP FORMULA",
-      author: "David Kim",
+      title: "ENGAGEMENT",
+      author: "David K.",
       explanation: "Documentary-style storytelling that helped secure Series A funding.",
       duration: "1:15",
       views: "4.2M",
@@ -111,8 +187,8 @@ const videoData = {
   "VSL Videos": [
     {
       id: 5,
-      title: "SALES CONVERSION MASTER",
-      author: "Lisa Thompson",
+      title: "SALES MASTER",
+      author: "Lisa T.",
       explanation: "500K+ regular views after implementing our VSL framework for Instagram Reels.",
       duration: "2:30",
       views: "892K",
@@ -121,8 +197,8 @@ const videoData = {
     },
     {
       id: 6,
-      title: "FUNNEL OPTIMIZATION",
-      author: "Alex Morgan",
+      title: "FUNNEL OPT",
+      author: "Alex M.",
       explanation: "Fast turnaround, incredible quality, and strategic partnership that raised $2M.",
       duration: "3:15",
       views: "1.2M",
@@ -131,8 +207,8 @@ const videoData = {
     },
     {
       id: 7,
-      title: "AIDA FRAMEWORK DEEP DIVE",
-      author: "Nina Patel",
+      title: "AIDA FRAMEWORK",
+      author: "Nina P.",
       explanation: "Attention-grabbing hooks that increased retention by 300% within weeks.",
       duration: "1:55",
       views: "756K",
@@ -141,8 +217,8 @@ const videoData = {
     },
     {
       id: 8,
-      title: "PSYCHOLOGICAL TRIGGERS",
-      author: "Oliver Chen",
+      title: "PSYCH TRIGGERS",
+      author: "Oliver C.",
       explanation: "How we engineered emotional responses that drive 7-figure campaigns.",
       duration: "2:45",
       views: "1.1M",
@@ -153,8 +229,8 @@ const videoData = {
   Weddings: [
     {
       id: 9,
-      title: "CINEMATIC LOVE STORY",
-      author: "Jessica & Michael",
+      title: "CINEMATIC LOVE",
+      author: "Jessica & M.",
       explanation: "Documentary-style wedding film that captured every authentic moment beautifully.",
       duration: "4:20",
       views: "345K",
@@ -163,8 +239,8 @@ const videoData = {
     },
     {
       id: 10,
-      title: "DRONE CINEMATOGRAPHY",
-      author: "Elena Rodriguez",
+      title: "DRONE CINEMA",
+      author: "Elena R.",
       explanation: "Aerial storytelling that elevated destination wedding production value.",
       duration: "3:45",
       views: "512K",
@@ -174,7 +250,7 @@ const videoData = {
     {
       id: 11,
       title: "SAME-DAY EDIT",
-      author: "The Johnson Wedding",
+      author: "Johnson W.",
       explanation: "Real-time editing magic delivered during the reception to roaring applause.",
       duration: "2:50",
       views: "278K",
@@ -183,8 +259,8 @@ const videoData = {
     },
     {
       id: 12,
-      title: "HIGHLIGHT REEL MASTER",
-      author: "Priya & David",
+      title: "HIGHLIGHT REEL",
+      author: "Priya & D.",
       explanation: "Emotional storytelling that made family and friends cry tears of joy.",
       duration: "5:10",
       views: "623K",
@@ -195,8 +271,8 @@ const videoData = {
   Podcasts: [
     {
       id: 13,
-      title: "MULTI-CAM SETUP",
-      author: "The Daily Grind",
+      title: "MULTI-CAM",
+      author: "Daily Grind",
       explanation: "Professional-grade podcast production that increased listener retention by 200%.",
       duration: "15:00",
       views: "1.5M",
@@ -205,8 +281,8 @@ const videoData = {
     },
     {
       id: 14,
-      title: "SOCIAL CLIP ENGINE",
-      author: "Tyler Adams",
+      title: "SOCIAL CLIP",
+      author: "Tyler A.",
       explanation: "Turning 2-hour conversations into 50+ viral clips generating millions of views.",
       duration: "0:60",
       views: "4.2M",
@@ -215,8 +291,8 @@ const videoData = {
     },
     {
       id: 15,
-      title: "DYNAMIC B-Roll INSERT",
-      author: "Creators Unfiltered",
+      title: "DYNAMIC B-ROLL",
+      author: "Creators U.",
       explanation: "Visual storytelling that keeps viewers engaged through long-form content.",
       duration: "22:30",
       views: "892K",
@@ -225,8 +301,8 @@ const videoData = {
     },
     {
       id: 16,
-      title: "SOUND DESIGN PRO",
-      author: "Audio Alchemy",
+      title: "SOUND DESIGN",
+      author: "Audio A.",
       explanation: "Professional mixing and mastering that competes with top-tier networks.",
       duration: "18:45",
       views: "1.1M",
@@ -237,8 +313,8 @@ const videoData = {
   CashCow: [
     {
       id: 17,
-      title: "DOCUMENTARY STYLE",
-      author: "Growth Ventures",
+      title: "DOCUMENTARY",
+      author: "Growth V.",
       explanation: "Cinematic case study that helped raise $2M in series A funding.",
       duration: "8:30",
       views: "2.1M",
@@ -247,7 +323,7 @@ const videoData = {
     },
     {
       id: 18,
-      title: "BRAND ORIGIN STORY",
+      title: "BRAND ORIGIN",
       author: "Luxe & Co",
       explanation: "Emotional brand documentary that increased customer lifetime value by 400%.",
       duration: "6:45",
@@ -257,8 +333,8 @@ const videoData = {
     },
     {
       id: 19,
-      title: "FOUNDER JOURNEY",
-      author: "TechStart Inc",
+      title: "FOUNDER",
+      author: "TechStart",
       explanation: "Authentic storytelling that humanized the brand and drove partnership deals.",
       duration: "10:20",
       views: "956K",
@@ -267,8 +343,8 @@ const videoData = {
     },
     {
       id: 20,
-      title: "IMPACT REPORT FILM",
-      author: "Green Future",
+      title: "IMPACT REPORT",
+      author: "Green F.",
       explanation: "Data-driven documentary style that secured government grants and funding.",
       duration: "7:15",
       views: "1.3M",
@@ -280,147 +356,137 @@ const videoData = {
 
 const categories = ["Reels", "VSL Videos", "Weddings", "Podcasts", "CashCow"];
 
-// Individual Video Card Component with Dynamic Aspect Ratio
-const VideoCard = ({ video, category }: { video: any; category: string }) => {
+// Custom hook for detecting mobile devices
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
+// Custom hook for intersection observer - FIXED for better mobile detection
+const useIntersectionObserver = (ref: React.RefObject<Element>, options?: IntersectionObserverInit) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, { threshold: 0.5, ...options });
+
+    observer.observe(element);
+    return () => observer.unobserve(element);
+  }, [ref, options]);
+
+  return isIntersecting;
+};
+
+// VideoCard Component - FIXED for proper mobile autoplay
+const VideoCard = ({ video, category, isActive, onActivate, isMobileDevice }: any) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isIntersecting = useIntersectionObserver(cardRef, { threshold: 0.5 });
+  
   const embedUrl = getGoogleDriveEmbedUrl(video.videoUrl);
   const aspectRatio = getAspectRatio(category);
-  const containerWidth = getContainerWidthClass(category);
+  const cardWidth = getCardWidth(category, isMobileDevice);
+  const cardPadding = getCardPadding(category, isMobileDevice);
+  const titleSize = getTitleSize(category, isMobileDevice);
+  const authorSize = getAuthorSize(category, isMobileDevice);
+  const playButtonSize = getPlayButtonSize(category, isMobileDevice);
+  const playIconSize = getPlayIconSize(category, isMobileDevice);
+  const chipSize = getChipSize(category, isMobileDevice);
+  const chipTextSize = getChipTextSize(category, isMobileDevice);
+  const chipIconSize = getChipIconSize(category, isMobileDevice);
+
+  // Handle autoplay on mobile based on intersection
+  useEffect(() => {
+    if (isMobileDevice) {
+      if (isIntersecting && !isPlaying && isActive) {
+        // Auto-play when card is visible and active
+        setIsPlaying(true);
+        onActivate?.(video.id);
+      } else if (!isIntersecting && isPlaying) {
+        // Pause when card is out of view
+        setIsPlaying(false);
+      }
+    }
+  }, [isIntersecting, isMobileDevice, isPlaying, isActive, video.id, onActivate]);
+
+  // Handle desktop hover behavior
+  const handleMouseEnter = () => {
+    if (!isMobileDevice) {
+      setIsHovered(true);
+      setIsPlaying(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobileDevice) {
+      setIsHovered(false);
+      setIsPlaying(false);
+    }
+  };
+
+  const handleManualPlay = () => {
+    setIsPlaying(true);
+    onActivate?.(video.id);
+  };
 
   return (
     <motion.div
-      className={`group relative ${containerWidth} mx-auto`}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      ref={cardRef}
+      className={`group relative ${cardWidth} flex-shrink-0`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 80, damping: 18 }}
     >
-      <motion.div
-        className="relative bg-gradient-to-br from-zinc-900 via-zinc-950 to-black rounded-2xl overflow-hidden border border-zinc-800/50 backdrop-blur-sm cursor-pointer shadow-xl"
-        animate={{
-          scale: isHovered ? 1.02 : 1,
-          borderColor: isHovered ? "rgba(239, 68, 68, 0.4)" : "rgba(39, 39, 42, 0.5)",
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      >
-        {/* Video Thumbnail/Player Area - DYNAMIC ASPECT RATIO */}
-        <div className={`relative ${aspectRatio} overflow-hidden bg-gradient-to-br from-zinc-800/50 to-black`}>
-          {!isPlaying ? (
-            <div className="relative h-full">
-              {/* Thumbnail Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/80 to-black/90 z-10" />
-              
-              {/* Gradient Overlay Background */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-600/5 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
-              
-              {/* Content Wrapper - Responsive padding based on category */}
-              <div className={`relative z-30 flex flex-col h-full ${
-                category === "Reels" ? "p-4 sm:p-5" : "p-4 sm:p-6 md:p-8"
-              }`}>
-                {/* Top Section - Metadata Chips */}
-                <div className="flex justify-between items-start gap-2">
-                  <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-red-500/20">
-                    <Clock className="w-3 h-3 text-red-500" />
-                    <span className="text-[11px] font-mono text-zinc-300">{video.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                    <Eye className="w-3 h-3 text-zinc-400" />
-                    <span className="text-[11px] font-mono text-zinc-300">{video.views}</span>
-                  </div>
-                </div>
+      <div className="relative w-full rounded-xl overflow-hidden shadow-2xl">
+        {/* BACKGROUND LAYER - Dark theme */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-red-600/10 via-transparent to-red-600/10 opacity-50" />
+          
+          <div className={`absolute inset-0 rounded-xl transition-opacity duration-300 ${
+            isHovered && !isMobileDevice && !isPlaying ? 'opacity-100' : 'opacity-0'
+          }`}
+            style={{
+              background: "radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15), transparent 70%)",
+            }}
+          />
+        </div>
 
-                {/* Center Section - Play Button */}
-                <div className="flex-1 flex items-center justify-center">
-                  <motion.button
-                    className="relative"
-                    onClick={() => setIsPlaying(true)}
-                    animate={{
-                      scale: isHovered ? 1.15 : 1,
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
-                    <div className={`relative ${
-                      category === "Reels" 
-                        ? "w-12 h-12 sm:w-14 sm:h-14" 
-                        : "w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18"
-                    } bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:shadow-red-600/40 transition-all duration-300`}>
-                      <Play className={`${
-                        category === "Reels" 
-                          ? "w-5 h-5 sm:w-6 sm:h-6" 
-                          : "w-6 h-6 sm:w-7 sm:h-7"
-                      } text-white ml-0.5`} fill="white" />
-                    </div>
-                  </motion.button>
-                </div>
-
-                {/* Bottom Section - Hover Reveal System */}
-                <div className="mt-auto space-y-1.5">
-                  {/* Default State */}
-                  <div className="space-y-0.5">
-                    <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-red-500 truncate">
-                      {video.author}
-                    </p>
-                    <h3 className={`font-bold uppercase tracking-tight text-white leading-tight line-clamp-2 ${
-                      category === "Reels" 
-                        ? "text-xs sm:text-sm" 
-                        : "text-sm sm:text-base md:text-lg"
-                    }`}>
-                      {video.title}
-                    </h3>
-                  </div>
-
-                  {/* Hover Expandable Content */}
-                  <motion.div
-                    className="overflow-hidden"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: isHovered ? "auto" : 0,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                  >
-                    <div className="pt-2 pb-3 space-y-2">
-                      <p className="text-[11px] sm:text-xs text-zinc-400 leading-relaxed line-clamp-2">
-                        {video.explanation}
-                      </p>
-                      <motion.a
-                        href={video.ctaLink}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600 hover:bg-red-700 rounded-lg text-white text-[11px] sm:text-xs font-semibold transition-colors"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        Explore Architecture
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="absolute inset-0 bg-black">
+        <div className={`relative ${aspectRatio} w-full`}>
+          
+          {isPlaying && (
+            <div className="absolute inset-0 z-20 bg-black">
               <iframe
-                src={`${embedUrl}?autoplay=1`}
+                src={`${embedUrl}${embedUrl.includes('?') ? '&' : '?'}autoplay=1`}
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 loading="lazy"
                 title={video.title}
               />
-              {/* Overlay with metadata when video is playing */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 z-10">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-2 z-30">
                 <div className="space-y-0.5">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-red-500">
+                  <p className={`font-bold uppercase tracking-wider text-red-500 ${category === "Reels" ? 'text-[7px]' : 'text-[9px]'}`}>
                     {video.author}
                   </p>
-                  <h3 className={`font-bold uppercase tracking-tight text-white leading-tight ${
-                    category === "Reels" ? "text-xs" : "text-sm"
-                  }`}>
+                  <h3 className={`font-bold uppercase tracking-tight text-white leading-tight ${category === "Reels" ? 'text-[8px]' : 'text-[10px]'}`}>
                     {video.title}
                   </h3>
                 </div>
@@ -428,19 +494,120 @@ const VideoCard = ({ video, category }: { video: any; category: string }) => {
             </div>
           )}
 
-          {/* Animated Border Glow Effect on Hover */}
+          <div className={`relative z-10 flex flex-col h-full ${cardPadding}`}>
+            
+            {/* Top Section - Metadata Chips */}
+            <div className="flex justify-between items-start gap-1">
+              <div className={`flex items-center gap-1 bg-black/60 backdrop-blur-md rounded-full border border-red-500/20 ${chipSize}`}>
+                <Clock className={`${chipIconSize} text-red-500`} />
+                <span className={`font-mono text-zinc-300 ${chipTextSize}`}>{video.duration}</span>
+              </div>
+              <div className={`flex items-center gap-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 ${chipSize}`}>
+                <Eye className={`${chipIconSize} text-zinc-400`} />
+                <span className={`font-mono text-zinc-300 ${chipTextSize}`}>{video.views}</span>
+              </div>
+            </div>
+
+            {/* Center Section - Play Button */}
+            <div className="flex-1 flex items-center justify-center">
+              <motion.button
+                className="relative"
+                onClick={handleManualPlay}
+                animate={{
+                  scale: isHovered ? 1.15 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                <div className={`relative ${playButtonSize} bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:shadow-red-600/40 transition-all duration-300`}>
+                  <Play className={`${playIconSize} text-white ml-0.5`} fill="white" />
+                </div>
+              </motion.button>
+            </div>
+
+            {/* Bottom Section */}
+            <div className="mt-auto">
+              <div className="space-y-0.5">
+                <p className={`font-bold uppercase tracking-wider text-red-500 truncate ${authorSize}`}>
+                  {video.author}
+                </p>
+                <h3 className={`font-bold uppercase tracking-tight text-white leading-tight line-clamp-2 ${titleSize}`}>
+                  {video.title}
+                </h3>
+              </div>
+
+              {/* HOVER EXPANDABLE CONTENT - Overlay only */}
+              <AnimatePresence>
+                {isHovered && !isMobileDevice && !isPlaying && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className={`absolute z-20 ${
+                      category === "Reels" ? 'bottom-12 left-2 right-2' : 'bottom-16 left-3 right-3'
+                    }`}
+                  >
+                    <div className={`bg-black/90 backdrop-blur-md rounded-lg border border-red-500/20 shadow-lg ${
+                      category === "Reels" ? 'p-1.5' : 'p-2'
+                    }`}>
+                      <p className={`text-zinc-300 leading-relaxed mb-1 ${category === "Reels" ? 'text-[9px] line-clamp-2' : 'text-[10px] line-clamp-2'}`}>
+                        {video.explanation}
+                      </p>
+                      <motion.a
+                        href={video.ctaLink}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold transition-colors text-[9px]"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        Explore
+                        <ChevronRight className="w-2.5 h-2.5" />
+                      </motion.a>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Hover glow border effect */}
           <motion.div
-            className="absolute inset-0 rounded-2xl pointer-events-none z-40"
+            className="absolute inset-0 rounded-xl pointer-events-none z-5"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered && !isPlaying ? 1 : 0 }}
+            animate={{ 
+              opacity: isHovered && !isPlaying && !isMobileDevice ? 1 : 0 
+            }}
             transition={{ duration: 0.3 }}
             style={{
-              background: "radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.2), transparent 70%)",
+              boxShadow: "inset 0 0 0 2px rgba(239, 68, 68, 0.4)",
             }}
           />
         </div>
-      </motion.div>
+      </div>
     </motion.div>
+  );
+};
+
+// Bottom Dots Navigation Component - MOBILE ONLY
+const DotNavigation = ({ total, currentIndex, onDotClick, isMobile }: any) => {
+  if (!isMobile) return null;
+  
+  return (
+    <div className="flex justify-center items-center gap-2 mt-6 sm:mt-8">
+      {Array.from({ length: total }).map((_, index) => (
+        <button
+          key={index}
+          onClick={() => onDotClick(index)}
+          className={`transition-all duration-300 rounded-full ${
+            currentIndex === index
+              ? 'w-8 h-2 bg-red-600' 
+              : 'w-2 h-2 bg-zinc-600 hover:bg-zinc-400'
+          }`}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -474,27 +641,75 @@ const CategoryTabs = ({ activeTab, setActiveTab }: { activeTab: string; setActiv
   );
 };
 
-// Main Testimonials Video Section Component
+// Main Component - FIXED for proper card navigation
 const TestimonialsVideoSection = () => {
   const [activeTab, setActiveTab] = useState("Reels");
+  const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
+  const [currentScrollIndex, setCurrentScrollIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
-  // Get current videos based on active tab
   const currentVideos = videoData[activeTab as keyof typeof videoData] || videoData.Reels;
+
+  // Handle scroll to update active dot and autoplay
+  const handleScroll = () => {
+    if (scrollContainerRef.current && isMobile) {
+      const scrollLeft = scrollContainerRef.current.scrollLeft;
+      const cardWidth = activeTab === "Reels" ? 180 : window.innerWidth * 0.75;
+      const gap = 12;
+      const index = Math.round(scrollLeft / (cardWidth + gap));
+      const newIndex = Math.min(index, currentVideos.length - 1);
+      
+      if (newIndex !== currentScrollIndex) {
+        setCurrentScrollIndex(newIndex);
+        // Update active video for autoplay
+        setActiveVideoId(currentVideos[newIndex]?.id || null);
+      }
+    }
+  };
+
+  // Handle dot click to scroll to specific card
+  const scrollToCard = (index: number) => {
+    if (scrollContainerRef.current && isMobile) {
+      const cardWidth = activeTab === "Reels" ? 180 : window.innerWidth * 0.75;
+      const gap = 12;
+      const scrollPosition = index * (cardWidth + gap);
+      scrollContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+      setCurrentScrollIndex(index);
+      setActiveVideoId(currentVideos[index]?.id || null);
+    }
+  };
+
+  // Set first video as active on mount and tab change
+  useEffect(() => {
+    if (currentVideos.length > 0 && isMobile) {
+      setActiveVideoId(currentVideos[0].id);
+    }
+  }, [activeTab, currentVideos, isMobile]);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container && isMobile) {
+      container.addEventListener('scroll', handleScroll);
+      // Trigger initial scroll position
+      handleScroll();
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, [activeTab, isMobile, currentVideos.length]);
 
   return (
     <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 bg-black overflow-hidden">
-      {/* Premium Dark Background Effects */}
+      {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-black" />
-      
-      {/* Subtle Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)] opacity-20" />
-      
-      {/* Radial Glow Accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-red-600/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 right-0 w-[60%] h-[40%] bg-red-500/5 rounded-full blur-[100px]" />
 
       <div className="relative z-10">
-        {/* Header Section */}
         <motion.div
           className="text-center mb-10 sm:mb-12 md:mb-16"
           initial={{ opacity: 0, y: 40 }}
@@ -527,28 +742,55 @@ const TestimonialsVideoSection = () => {
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
         <CategoryTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* 2×2 Video Grid - FULLY RESPONSIVE WITH DYNAMIC CARD SIZING */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8 ${
-              activeTab === "Reels" ? "max-w-3xl" : "max-w-5xl"
-            } mx-auto`}
-          >
-            {currentVideos.map((video) => (
-              <VideoCard key={video.id} video={video} category={activeTab} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* Carousel Container */}
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              ref={scrollContainerRef}
+              className={`flex overflow-x-auto overflow-y-hidden gap-3 sm:gap-4 pb-4 ${
+                isMobile ? 'snap-x snap-mandatory px-4' : 'justify-center px-8'
+              }`}
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {currentVideos.map((video, idx) => (
+                <div 
+                  key={video.id} 
+                  className={`${isMobile ? 'snap-start' : ''}`}
+                >
+                  <VideoCard
+                    video={video}
+                    category={activeTab}
+                    isActive={activeVideoId === video.id}
+                    onActivate={(id: number) => setActiveVideoId(id)}
+                    isMobileDevice={isMobile}
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Stats Bar - Premium Dark Version */}
+          {/* Bottom Dots Navigation - ONLY on mobile */}
+          {currentVideos.length > 1 && isMobile && (
+            <DotNavigation 
+              total={currentVideos.length}
+              currentIndex={currentScrollIndex}
+              onDotClick={scrollToCard}
+              isMobile={isMobile}
+            />
+          )}
+        </div>
+
+        {/* Stats Bar */}
         <motion.div
           className="mt-14 sm:mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 40 }}

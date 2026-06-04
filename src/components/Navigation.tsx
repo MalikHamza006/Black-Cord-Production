@@ -5,7 +5,10 @@ import { Menu, X, ChevronDown } from "lucide-react";
 
 const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // State for Desktop Dropdown
   const [videoServicesOpen, setVideoServicesOpen] = useState(false);
+  // Separate State for Mobile Dropdown to prevent conflicts
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const videoServices = [
@@ -29,8 +32,20 @@ const Navigation = () => {
     };
   }, [hoverTimeout]);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileOpen]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/90 nav-blur border-b border-neutral-200 osmo-bg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 nav-blur border-b border-neutral-200 osmo-bg">
       {/* Gradient Mesh Background */}
       <div className="gradient-mesh"></div>
       
@@ -52,7 +67,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3 animate-fade-in">
-            <Link to="/" className="flex items-center space-x-2 sm:space-x-3">
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3" onClick={() => setMobileOpen(false)}>
               <img
                 src="ascets/logo.png"
                 alt="Black Cord Production logo"
@@ -66,7 +81,7 @@ const Navigation = () => {
                 <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-black">
                   Black Cord
                 </h1>
-                <div className="absolute -top-1 -right-6 sm:-right-8 text-xs text-neutral-500 font-medium">
+                <div className="absolute -top-1 -right-6 sm:-right-8 text-[10px] sm:text-xs text-neutral-500 font-medium">
                   PRODUCTION
                 </div>
               </div>
@@ -110,18 +125,18 @@ const Navigation = () => {
               {/* Dropdown Menu */}
               {videoServicesOpen && (
                 <div className="services-dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-neutral-200 py-2 z-[100] animate-slide-down"
-                     onMouseEnter={() => {
-                       if (hoverTimeout) {
-                         clearTimeout(hoverTimeout);
-                         setHoverTimeout(null);
-                       }
-                     }}
-                     onMouseLeave={() => {
-                       const timeout = setTimeout(() => {
-                         setVideoServicesOpen(false);
-                       }, 150);
-                       setHoverTimeout(timeout);
-                     }}>
+                    onMouseEnter={() => {
+                      if (hoverTimeout) {
+                        clearTimeout(hoverTimeout);
+                        setHoverTimeout(null);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      const timeout = setTimeout(() => {
+                        setVideoServicesOpen(false);
+                      }, 150);
+                      setHoverTimeout(timeout);
+                    }}>
                   {videoServices.map((service, index) => (
                     <Link
                       key={service.name}
@@ -147,9 +162,6 @@ const Navigation = () => {
 
           {/* Right Navigation */}
           <div className="hidden md:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 animate-slide-in-right flex-shrink-0">
-            {/* <Link to="/client-login" className="text-black no-underline hover:text-red-600 transition-colors interactive-glow text-sm lg:text-base">
-              Client Login
-            </Link> */}
             <Link
               to="/start-project"
               className="no-underline px-3 lg:px-4 py-2 rounded-md font-semibold bg-red-600 text-white hover:bg-black transition-colors interactive-glow text-sm lg:text-base"
@@ -159,14 +171,14 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-black hover:bg-neutral-100"
+              className="text-black hover:bg-neutral-100 focus:bg-transparent active:bg-transparent w-11 h-11"
             >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </Button>
           </div>
         </div>
@@ -174,44 +186,44 @@ const Navigation = () => {
 
       {/* Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-neutral-200 animate-slide-down fixed top-[73px] left-0 right-0 z-[100] shadow-lg max-h-[calc(100vh-73px)] overflow-y-auto">
-          <div className="flex flex-col items-start space-y-2 px-4 sm:px-6 py-4">
+        <div className="md:hidden bg-white border-t border-neutral-200 fixed top-full left-0 right-0 z-50 shadow-xl max-h-[calc(100vh-100%)] overflow-y-auto animate-slide-down">
+          <div className="flex flex-col items-start space-y-1 px-4 sm:px-6 py-4 bg-white/95 backdrop-blur-md">
             <Link 
               to="/" 
               onClick={() => setMobileOpen(false)} 
-              className="text-black no-underline hover:text-red-600 transition-colors w-full py-2 text-sm sm:text-base"
+              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
             >
               Home
             </Link>
             <Link 
               to="/portfolio" 
               onClick={() => setMobileOpen(false)} 
-              className="text-black no-underline hover:text-red-600 transition-colors w-full py-2 text-sm sm:text-base"
+              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
             >
               Portfolio
             </Link>
             
             {/* Services Mobile Dropdown */}
-            <div className="w-full">
+            <div className="w-full border-b border-neutral-100/50">
               <button 
-                onClick={() => setVideoServicesOpen(!videoServicesOpen)}
-                className="flex items-center justify-between w-full py-2 text-sm sm:text-base text-black hover:text-red-600 transition-colors duration-200"
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="flex items-center justify-between w-full py-2.5 text-base font-medium text-neutral-900 hover:text-red-600 transition-colors duration-200"
               >
-                Services
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${videoServicesOpen ? 'rotate-180' : ''}`} />
+                <span>Services</span>
+                <ChevronDown className={`w-4 h-4 text-neutral-500 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180 text-red-600' : ''}`} />
               </button>
               
-              {videoServicesOpen && (
-                <div className="ml-4 mt-2 space-y-1 bg-neutral-50 rounded-lg p-2">
+              {mobileServicesOpen && (
+                <div className="pl-3 mb-2 space-y-0.5 bg-neutral-50 rounded-lg p-1 animate-slide-down">
                   {videoServices.map((service) => (
                     <Link
                       key={service.name}
                       to={service.path}
                       onClick={() => {
                         setMobileOpen(false);
-                        setVideoServicesOpen(false);
+                        setMobileServicesOpen(false);
                       }}
-                      className="block py-2 px-3 text-sm text-neutral-600 hover:text-red-600 hover:bg-white rounded-md transition-colors duration-200"
+                      className="block py-2 px-3 text-sm font-medium text-neutral-600 hover:text-red-600 hover:bg-white rounded-md transition-all duration-150"
                     >
                       {service.name}
                     </Link>
@@ -223,29 +235,30 @@ const Navigation = () => {
             <Link 
               to="/pricing" 
               onClick={() => setMobileOpen(false)} 
-              className="text-black no-underline hover:text-red-600 transition-colors w-full py-2 text-sm sm:text-base"
+              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
             >
               Pricing
             </Link>
             <Link 
               to="/contact" 
               onClick={() => setMobileOpen(false)} 
-              className="text-black no-underline hover:text-red-600 transition-colors w-full py-2 text-sm sm:text-base"
+              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
             >
               Contact
             </Link>
             <Link 
               to="/client-login" 
               onClick={() => setMobileOpen(false)} 
-              className="text-black no-underline hover:text-red-600 transition-colors w-full py-2 text-sm sm:text-base"
+              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base"
             >
               Client Login
             </Link>
-            <div className="w-full pt-2 border-t border-neutral-200 mt-2">
+            
+            <div className="w-full pt-4 mt-2">
               <Link
                 to="/start-project"
                 onClick={() => setMobileOpen(false)}
-                className="block w-full text-center px-4 py-2 rounded-md font-semibold bg-red-600 text-white hover:bg-black transition-colors text-sm sm:text-base"
+                className="block w-full text-center px-4 py-3 rounded-md font-semibold bg-red-600 text-white hover:bg-black transition-all duration-200 active:scale-[0.98] shadow-md shadow-red-600/10"
               >
                 Start Project
               </Link>
