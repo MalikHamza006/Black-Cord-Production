@@ -159,7 +159,7 @@ const MotionGraphics = () => {
             </div>
           </motion.div>
 
-          {/* Motion Graphics Video Showcase */}
+          {/* Motion Graphics Video Showcase - Redesigned */}
           <motion.div 
             className="mb-24"
             initial={{ opacity: 0, y: 40 }}
@@ -173,37 +173,43 @@ const MotionGraphics = () => {
               </p>
             </div>
 
+            {/* Redesigned video cards with improved layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Video 1 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/motion1"
+                      src="https://player.vimeo.com/video/1066091632"
                       title="Motion Graphics - Dynamic Example 1"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       DYNAMIC
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.9M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Dynamic Visual Effects</h3>
-                    <p className="text-black mb-4 flex-grow">This motion graphics video captivated audiences with stunning visual effects, generating 1.9M views.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Motion Graphics</span>
-                      <span className="text-sm text-black">1.9M views</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Dynamic Visual Effects</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
+                    </div>
+                    <p className="text-black mb-4">This motion graphics video captivated audiences with stunning visual effects, generating 1.9M views.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+235% Engagement</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">1.9M views</div>
                     </div>
                   </div>
                 </Card>
@@ -211,34 +217,39 @@ const MotionGraphics = () => {
 
               {/* Video 2 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/motion2"
+                      src="https://player.vimeo.com/video/1066091632"
                       title="Motion Graphics - Dynamic Example 2"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       ANIMATED
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.4M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Animated Storytelling</h3>
-                    <p className="text-black mb-4 flex-grow">This animated motion graphics video told a compelling story, resulting in 2.4M views and high engagement.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Motion Graphics</span>
-                      <span className="text-sm text-black">2.4M views</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Animated Storytelling</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
+                    </div>
+                    <p className="text-black mb-4">This animated motion graphics video told a compelling story, resulting in 2.4M views and high engagement.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+312% Engagement</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">2.4M views</div>
                     </div>
                   </div>
                 </Card>
@@ -246,34 +257,39 @@ const MotionGraphics = () => {
 
               {/* Video 3 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.4 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/motion3"
+                      src="https://player.vimeo.com/video/1066091632"
                       title="Motion Graphics - Dynamic Example 3"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       STUNNING
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.1M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Visual Excellence</h3>
-                    <p className="text-black mb-4 flex-grow">Our highest-performing motion graphics video with 3.1M views and stunning visual effects.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Motion Graphics</span>
-                      <span className="text-sm text-black">3.1M views</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Visual Excellence</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
+                    </div>
+                    <p className="text-black mb-4">Our highest-performing motion graphics video with 3.1M views and stunning visual effects.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+480% Engagement</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">3.1M views</div>
                     </div>
                   </div>
                 </Card>
@@ -345,148 +361,6 @@ const MotionGraphics = () => {
                   </Card>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* Professional Pricing */}
-          <motion.div 
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-black mb-6">Investment Options</h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
-                Transparent pricing with no hidden fees. Choose the package that aligns with your creative vision.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Starter Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$400</div>
-                  <p className="text-black">Perfect for testing our service</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Professional motion graphics",
-                    "Basic animation effects",
-                    "Color correction & grading",
-                    "Audio synchronization",
-                    "72-hour delivery",
-                    "2 rounds of revisions",
-                    "Basic analytics report"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Professional Package - Most Popular */}
-              <Card className="bg-white border-2 border-red-500 p-8 relative overflow-visible flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
-                <div className="text-center mb-8 pt-4">
-                  <h3 className="text-2xl font-bold text-black mb-2">Professional</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$300</div>
-                  <p className="text-black">Best value for serious creators</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Starter",
-                    "Advanced animation effects",
-                    "Custom motion graphics",
-                    "3D elements integration",
-                    "48-hour delivery",
-                    "Unlimited revisions",
-                    "Priority support",
-                    "Monthly strategy call"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="member" size="xl" className="w-full mb-4">
-                      Choose Professional
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Enterprise Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$200</div>
-                  <p className="text-black">For agencies & large projects</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Professional",
-                    "Dedicated motion designer",
-                    "Custom workflow integration",
-                    "White-label options",
-                    "24-hour delivery",
-                    "Unlimited revisions",
-                    "24/7 priority support",
-                    "Weekly progress calls",
-                    "Custom reporting dashboard"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Contact Sales
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
             </div>
           </motion.div>
 

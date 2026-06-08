@@ -184,7 +184,7 @@ const MagnatesMediaStyle = () => {
                   <div className="aspect-[9/16] sm:aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/magnates1"
+                      src="https://player.vimeo.com/video/1066089898"
                       title="Magnates Media Video - Premium Example 1"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -219,7 +219,7 @@ const MagnatesMediaStyle = () => {
                   <div className="aspect-[9/16] sm:aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/magnates2"
+                      src="https://player.vimeo.com/video/1066089898"
                       title="Magnates Media Video - Premium Example 2"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -254,7 +254,7 @@ const MagnatesMediaStyle = () => {
                   <div className="aspect-[9/16] sm:aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/magnates3"
+                      src="https://player.vimeo.com/video/1066089898"
                       title="Magnates Media Video - Premium Example 3"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -347,147 +347,7 @@ const MagnatesMediaStyle = () => {
             </div>
           </motion.div>
 
-          {/* Professional Pricing */}
-          <motion.div 
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-black mb-6">Investment Options</h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
-                Transparent pricing with no hidden fees. Choose the package that aligns with your premium positioning goals.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Starter Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$1,200</div>
-                  <p className="text-black">Perfect for testing our premium service</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Premium video editing",
-                    "Authority positioning strategy",
-                    "Luxury-grade color grading",
-                    "High-end audio mastering",
-                    "60-hour delivery",
-                    "2 rounds of revisions",
-                    "Basic analytics report"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Professional Package - Most Popular */}
-              <Card className="bg-white border-2 border-red-500 p-8 relative overflow-visible flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
-                <div className="text-center mb-8 pt-4">
-                  <h3 className="text-2xl font-bold text-black mb-2">Professional</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$900</div>
-                  <p className="text-black">Best value for serious leaders</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Starter",
-                    "Advanced authority positioning",
-                    "Premium motion graphics",
-                    "Custom brand integration",
-                    "48-hour delivery",
-                    "Unlimited revisions",
-                    "Priority support",
-                    "Monthly strategy call"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="member" size="xl" className="w-full mb-4">
-                      Choose Professional
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Enterprise Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$600</div>
-                  <p className="text-black">For agencies & large brands</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Professional",
-                    "Dedicated account manager",
-                    "Custom workflow integration",
-                    "White-label options",
-                    "36-hour delivery",
-                    "Unlimited revisions",
-                    "24/7 priority support",
-                    "Weekly strategy calls",
-                    "Custom reporting dashboard"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Contact Sales
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            </div>
-          </motion.div>
+          {/* Investment Options Section - REMOVED */}
 
           {/* Client Success Stories */}
           <motion.div 

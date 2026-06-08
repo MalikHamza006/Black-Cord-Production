@@ -158,7 +158,7 @@ const DocumentaryStyle = () => {
             </div>
           </motion.div>
 
-          {/* Documentary Video Showcase */}
+          {/* Documentary Video Showcase - Redesigned */}
           <motion.div 
             className="mb-24"
             initial={{ opacity: 0, y: 40 }}
@@ -172,6 +172,7 @@ const DocumentaryStyle = () => {
               </p>
             </div>
 
+            {/* Redesigned video cards with improved layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Video 1 */}
               <motion.div
@@ -180,28 +181,34 @@ const DocumentaryStyle = () => {
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
               >
                 <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="aspect-[9/16] bg-black relative">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/documentary1"
+                      src="https://player.vimeo.com/video/1066091555"
                       title="Documentary Video - Cinematic Example 1"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       CINEMATIC
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.8M views
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-black mb-2">Storytelling Mastery</h3>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Storytelling Mastery</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
+                    </div>
                     <p className="text-black mb-4">This documentary captivated audiences with powerful storytelling, generating $400K+ in revenue.</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-red-600 font-semibold">Documentary</span>
-                      <span className="text-sm text-black">$400K revenue</span>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+245% ROI</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">$400K revenue</div>
                     </div>
                   </div>
                 </Card>
@@ -214,28 +221,34 @@ const DocumentaryStyle = () => {
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
               >
                 <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="aspect-[9/16] bg-black relative">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/documentary2"
+                      src="https://player.vimeo.com/video/1066091555"
                       title="Documentary Video - Cinematic Example 2"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       EPIC
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.3M views
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-black mb-2">Visual Excellence</h3>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Visual Excellence</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
+                    </div>
                     <p className="text-black mb-4">This documentary showcased visual excellence, resulting in $600K+ in revenue and brand partnerships.</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-red-600 font-semibold">Documentary</span>
-                      <span className="text-sm text-black">$600K revenue</span>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+312% ROI</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">$600K revenue</div>
                     </div>
                   </div>
                 </Card>
@@ -248,28 +261,34 @@ const DocumentaryStyle = () => {
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.4 }}
               >
                 <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="aspect-[9/16] bg-black relative">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/documentary3"
+                      src="https://player.vimeo.com/video/1066091555"
                       title="Documentary Video - Cinematic Example 3"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       MASTERPIECE
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.1M views
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-black mb-2">Narrative Excellence</h3>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Narrative Excellence</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
+                    </div>
                     <p className="text-black mb-4">Our highest-performing documentary with 3.1M views and $800K+ in revenue through multiple streams.</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-red-600 font-semibold">Documentary</span>
-                      <span className="text-sm text-black">$800K revenue</span>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+580% ROI</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">$800K revenue</div>
                     </div>
                   </div>
                 </Card>
@@ -341,148 +360,6 @@ const DocumentaryStyle = () => {
                   </Card>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* Professional Pricing */}
-          <motion.div 
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-black mb-6">Investment Options</h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
-                Transparent pricing with no hidden fees. Choose the package that aligns with your storytelling goals.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Starter Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$500</div>
-                  <p className="text-black">Perfect for testing our service</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Professional documentary editing",
-                    "Story development consultation",
-                    "Color correction & grading",
-                    "Audio enhancement",
-                    "72-hour delivery",
-                    "2 rounds of revisions",
-                    "Basic analytics report"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Professional Package - Most Popular */}
-              <Card className="bg-white border-2 border-red-500 p-8 relative overflow-visible flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
-                <div className="text-center mb-8 pt-4">
-                  <h3 className="text-2xl font-bold text-black mb-2">Professional</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$400</div>
-                  <p className="text-black">Best value for serious storytellers</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Starter",
-                    "Advanced story development",
-                    "Motion graphics & effects",
-                    "Custom music & sound design",
-                    "48-hour delivery",
-                    "Unlimited revisions",
-                    "Priority support",
-                    "Distribution strategy"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="member" size="xl" className="w-full mb-4">
-                      Choose Professional
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Enterprise Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$300</div>
-                  <p className="text-black">For agencies & large productions</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Professional",
-                    "Dedicated production team",
-                    "Custom workflow integration",
-                    "White-label options",
-                    "24-hour delivery",
-                    "Unlimited revisions",
-                    "24/7 priority support",
-                    "Weekly progress calls",
-                    "Custom reporting dashboard"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Contact Sales
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
             </div>
           </motion.div>
 

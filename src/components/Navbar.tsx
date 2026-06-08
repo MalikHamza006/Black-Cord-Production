@@ -12,7 +12,6 @@ const navLinks: NavLinkItem[] = [
   { name: "Home", path: "/" },
   { name: "Portfolio", path: "/portfolio" },
   { name: "Services", path: "/services" },
-  { name: "Pricing", path: "/pricing" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -120,7 +119,7 @@ const Navbar: React.FC = () => {
             style={{ 
               top: "4rem", 
               height: "calc(100vh - 4rem)",
-              height: "calc(100dvh - 4rem)" /* Leverages dynamic viewports to combat mobile address bar clipping */
+              height: "calc(100dvh - 4rem)"
             }}
           >
             {/* INNER EXPANSIVE LAYOUT LINKS BLOCK */}
@@ -160,6 +159,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
-
-

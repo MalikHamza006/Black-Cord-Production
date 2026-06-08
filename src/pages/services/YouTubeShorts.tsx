@@ -186,14 +186,14 @@ const YouTubeShorts = () => {
               >
                 <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="aspect-[9/16] bg-black relative">
-                    <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=example1"
-                      title="YouTube Shorts - Viral Example 1"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
+                   <iframe
+  className="w-full h-full"
+  src="https://player.vimeo.com/video/1068495229"
+  title="Vimeo Video"
+  frameBorder="0"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowFullScreen
+></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       VIRAL
                     </div>
@@ -223,8 +223,8 @@ const YouTubeShorts = () => {
                   <div className="aspect-[9/16] bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=example2"
-                      title="YouTube Shorts - Viral Example 2"
+                      src="https://player.vimeo.com/video/1066154660"
+                      title="Vimeo Video"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
@@ -258,8 +258,8 @@ const YouTubeShorts = () => {
                   <div className="aspect-[9/16] bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=example3"
-                      title="YouTube Shorts - Viral Example 3"
+                      src="https://player.vimeo.com/video/1066199796"
+                      title="Vimeo Video"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
@@ -351,147 +351,7 @@ const YouTubeShorts = () => {
             </div>
           </motion.div>
 
-          {/* Professional Pricing */}
-          <motion.div 
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-black mb-6">Investment Options</h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
-                Transparent pricing with no hidden fees. Choose the package that aligns with your growth goals.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Starter Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$200</div>
-                  <p className="text-black">Perfect for testing our service</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Professional editing & color grading",
-                    "Viral hook creation",
-                    "Smooth transitions & effects",
-                    "Audio enhancement",
-                    "48-hour delivery",
-                    "2 rounds of revisions",
-                    "Basic analytics report"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Professional Package - Most Popular */}
-              <Card className="bg-white border-2 border-red-500 p-8 relative overflow-visible flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
-                <div className="text-center mb-8 pt-4">
-                  <h3 className="text-2xl font-bold text-black mb-2">Professional</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$150</div>
-                  <p className="text-black">Best value for serious creators</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Starter",
-                    "Advanced analytics & insights",
-                    "Custom thumbnail design",
-                    "SEO optimization",
-                    "24-hour delivery",
-                    "Unlimited revisions",
-                    "Priority support",
-                    "Monthly strategy call"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="member" size="xl" className="w-full mb-4">
-                      Choose Professional
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Enterprise Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$120</div>
-                  <p className="text-black">For agencies & large creators</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Professional",
-                    "Dedicated account manager",
-                    "Custom workflow integration",
-                    "White-label options",
-                    "12-hour delivery",
-                    "Unlimited revisions",
-                    "24/7 priority support",
-                    "Weekly strategy calls",
-                    "Custom reporting dashboard"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Contact Sales
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            </div>
-          </motion.div>
+          {/* Investment Options Section - REMOVED */}
 
           {/* Client Success Stories */}
           <motion.div 

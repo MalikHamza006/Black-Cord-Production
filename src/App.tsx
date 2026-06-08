@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import Services from "./pages/Services";
-import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 // import ClientLogin from "./pages/ClientLogin";
 import StartProject from "./pages/StartProject";
@@ -45,7 +44,6 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/start-project" element={<StartProject />} />
 

@@ -5,8 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, MessageCircle, Calendar, Play, Zap, Star, Users, TrendingUp, ArrowRight, Clock, CheckCircle, Video, Smartphone, Headphones, Check, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Calendar, Play, Zap, Star, Users, TrendingUp, ArrowRight, Clock, CheckCircle, Video, Smartphone, Headphones, Check, Loader2, Target, Award } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const quickActions = [
   {
@@ -48,10 +49,10 @@ const quickActions = [
 ];
 
 const stats = [
-  { number: "45M+", label: "Views We've Helped Create", icon: TrendingUp },
-  { number: "2.3M+", label: "Subscribers Our Clients Gained", icon: Users },
-  { number: "24h", label: "How Fast We Work", icon: Clock },
-  { number: "98%", label: "Clients Who Love Working With Us", icon: Star }
+  { number: "45M+", label: "Views Generated", icon: TrendingUp, color: "text-red-600", bgColor: "bg-red-50" },
+  { number: "2.3M+", label: "Subscribers Gained", icon: Users, color: "text-green-600", bgColor: "bg-green-50" },
+  { number: "24h", label: "Fast Delivery", icon: Clock, color: "text-blue-600", bgColor: "bg-blue-50" },
+  { number: "98%", label: "Client Satisfaction", icon: Star, color: "text-purple-600", bgColor: "bg-purple-50" }
 ];
 
 const Contact = () => {
@@ -70,7 +71,6 @@ const Contact = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
-    // Clear error when user starts typing
     if (submitError) setSubmitError(null);
   };
 
@@ -79,7 +79,6 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Prepare form data for Formspree
     const formspreeData = new FormData();
     formspreeData.append("firstName", formData.firstName);
     formspreeData.append("lastName", formData.lastName);
@@ -108,7 +107,6 @@ const Contact = () => {
           budget: "",
           message: ""
         });
-        // Reset success message after 5 seconds
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         const errorData = await response.json();
@@ -151,59 +149,75 @@ const Contact = () => {
       <Navigation />
       <main className="pt-20 sm:pt-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
-          {/* Human-Centered Header */}
-          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 18 }}>
-            <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-red-100">
+          
+          {/* Hero Section - Professional Style */}
+          <motion.div 
+            className="relative mb-20 text-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+          >
+            <motion.div 
+              className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-red-100"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 }}
+            >
               <Video className="w-4 h-4" />
-              Hey there! Let's talk about your videos
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 leading-tight">
+              <span>Let's Create Something Amazing</span>
+            </motion.div>
+
+            <motion.h1 
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-black mb-6 leading-[1.1] tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               Ready to Make Your
-              <span className="text-red-600 block">Dreams Go Viral?</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed mb-8">
+              <span className="text-red-600 block mt-2">Dreams Go Viral?</span>
+            </motion.h1>
+
+            <motion.p 
+              className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
               We're not just editors – we're your creative partners. We've helped creators like you reach <span className="font-bold text-black">200M+ views</span> and generate <span className="font-bold text-black">$15M+ in revenue</span>. Professional editing starting at just $75 per video.
-            </p>
-            
-            {/* Trust Signals */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-              <div className="flex items-center gap-2 bg-green-50 text-green-600 px-4 py-2 rounded-full text-sm font-semibold border border-green-100">
+            </motion.p>
+
+            <motion.div 
+              className="flex flex-wrap items-center justify-center gap-4 mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <div className="flex items-center gap-2 bg-green-50 text-green-600 px-4 py-2 rounded-full text-sm font-semibold border border-green-100 hover:scale-105 transition-all duration-300">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                 30-Day Money-Back Guarantee
               </div>
-              <div className="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold border border-blue-100">
+              <div className="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold border border-blue-100 hover:scale-105 transition-all duration-300">
                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                 24-Hour Delivery
               </div>
-              <div className="flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold border border-purple-100">
+              <div className="flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold border border-purple-100 hover:scale-105 transition-all duration-300">
                 <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                 Starting at $75
               </div>
-              <div className="flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold border border-orange-100">
+              <div className="flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-semibold border border-orange-100 hover:scale-105 transition-all duration-300">
                 <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                 Unlimited Revisions
               </div>
-            </div>
-            
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="text-center p-4 bg-white rounded-xl border border-neutral-200"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 80, damping: 18, delay: index * 0.1 }}
-                >
-                  <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-1">{stat.number}</div>
-                  <div className="text-xs sm:text-sm text-neutral-600">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Let's Connect - Human Touch */}
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}>
+          {/* Quick Connect Options */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          >
             {quickActions.map((action, index) => (
               <motion.div 
                 key={action.title}
@@ -217,25 +231,20 @@ const Contact = () => {
                   target={action.link.startsWith('http') ? '_blank' : '_self'}
                   rel={action.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
-                  <Card className="group bg-white border border-neutral-200 hover:border-red-500 transition-all duration-500 hover:shadow-xl hover:scale-[1.02] cursor-pointer overflow-hidden hover:bg-gradient-to-br hover:from-white hover:to-red-50/30">
+                  <Card className="group bg-white border border-neutral-200 hover:border-red-500 transition-all duration-500 hover:shadow-xl hover:scale-[1.02] cursor-pointer overflow-hidden hover:bg-gradient-to-br hover:from-white hover:to-red-50/30 h-full">
                     <div className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-16 h-16 ${action.color} rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
-                          <action.icon className={`w-8 h-8 ${action.textColor}`} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-black mb-1 group-hover:text-red-600 transition-colors duration-300">
-                            {action.title}
-                          </h3>
-                          <p className="text-sm text-neutral-600 mb-2 group-hover:text-neutral-700 transition-colors duration-300">
-                            {action.subtitle}
-                          </p>
-                          <p className="text-xs text-red-600 font-semibold group-hover:text-red-700 transition-colors duration-300">
-                            {action.stats}
-                          </p>
-                        </div>
-                        <ArrowRight className="w-6 h-6 text-neutral-400 group-hover:text-red-600 group-hover:translate-x-2 transition-all duration-500" />
+                      <div className={`w-16 h-16 ${action.color} rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl mb-4`}>
+                        <action.icon className={`w-8 h-8 ${action.textColor}`} />
                       </div>
+                      <h3 className="text-xl font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300">
+                        {action.title}
+                      </h3>
+                      <p className="text-sm text-neutral-600 mb-3 group-hover:text-neutral-700 transition-colors duration-300">
+                        {action.subtitle}
+                      </p>
+                      <p className="text-xs text-red-600 font-semibold group-hover:text-red-700 transition-colors duration-300">
+                        {action.stats}
+                      </p>
                     </div>
                   </Card>
                 </a>
@@ -243,22 +252,71 @@ const Contact = () => {
             ))}
           </motion.div>
 
-          {/* Tell Us About Your Project - Form with Formspree Integration */}
-          <motion.div className="mb-12" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}>
-            <Card className="bg-white border border-neutral-200 overflow-hidden hover:shadow-lg transition-all duration-500">
-              <div className="bg-gradient-to-r from-red-50 to-red-100 p-6 border-b border-red-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <Video className="w-6 h-6 text-white" />
+          {/* Professional Stats Section */}
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+          >
+            <div className="text-center mb-12">
+              <h2 className="section-text text-black mb-6">Proven Results</h2>
+              <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+                Our data-driven approach delivers measurable growth across all metrics that matter to your business.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ type: 'spring', stiffness: 80, damping: 18, delay: index * 0.1 }}
+                >
+                  <Card className="bg-white border border-neutral-200 p-6 text-center hover:shadow-xl transition-all duration-300 group">
+                    <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                    </div>
+                    <div className="text-2xl font-bold text-black mb-2">{stat.number}</div>
+                    <div className="text-sm font-semibold text-black">{stat.label}</div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Contact Form Section - Professional */}
+          <motion.div 
+            className="mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+          >
+            <div className="text-center mb-12">
+              <h2 className="section-text text-black mb-6">Tell Us About Your Vision</h2>
+              <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+                We'll have your video ready in 24 hours – promise! Fill out the form below and let's create something amazing together.
+              </p>
+            </div>
+
+            <Card className="bg-white border border-neutral-200 overflow-hidden hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-red-50 to-red-100 p-8 border-b border-red-200">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <Video className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-black">Tell Us About Your Vision</h2>
-                    <p className="text-sm text-neutral-600">We'll have your video ready in 24 hours – promise!</p>
+                    <h3 className="text-2xl font-bold text-black">Start Your Project</h3>
+                    <p className="text-sm text-neutral-600">Fill out the form and we'll get back to you within 2 hours</p>
                   </div>
                 </div>
               </div>
               
-              <div className="p-6">
+              <div className="p-8">
                 {/* Success Message */}
                 {isSubmitted && (
                   <motion.div 
@@ -287,9 +345,9 @@ const Contact = () => {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-black font-semibold">What should we call you? *</Label>
+                      <Label htmlFor="firstName" className="text-black font-semibold">First Name *</Label>
                       <Input 
                         id="firstName" 
                         value={formData.firstName}
@@ -301,7 +359,7 @@ const Contact = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName" className="text-black font-semibold">Last name *</Label>
+                      <Label htmlFor="lastName" className="text-black font-semibold">Last Name *</Label>
                       <Input 
                         id="lastName" 
                         value={formData.lastName}
@@ -315,7 +373,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-black font-semibold">Your email address *</Label>
+                    <Label htmlFor="email" className="text-black font-semibold">Email Address *</Label>
                     <Input 
                       id="email" 
                       type="email" 
@@ -328,9 +386,9 @@ const Contact = () => {
                     />
                   </div>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="projectType" className="text-black font-semibold">What kind of video do you need? *</Label>
+                      <Label htmlFor="projectType" className="text-black font-semibold">Project Type *</Label>
                       <select 
                         id="projectType"
                         value={formData.projectType}
@@ -339,8 +397,8 @@ const Contact = () => {
                         required
                         disabled={isSubmitting}
                       >
-                        <option value="">Tell us what you're thinking...</option>
-                        <option value="youtube-shorts">🎬 YouTube Shorts (our specialty!)</option>
+                        <option value="">Select your project type</option>
+                        <option value="youtube-shorts">🎬 YouTube Shorts</option>
                         <option value="tiktok-videos">📱 TikTok Videos</option>
                         <option value="instagram-reels">📸 Instagram Reels</option>
                         <option value="cash-cow">💰 Cash Cow Channels</option>
@@ -349,7 +407,7 @@ const Contact = () => {
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="budget" className="text-black font-semibold">What's your budget range?</Label>
+                      <Label htmlFor="budget" className="text-black font-semibold">Budget Range</Label>
                       <select 
                         id="budget"
                         value={formData.budget}
@@ -357,7 +415,7 @@ const Contact = () => {
                         className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all duration-300 text-black h-12 hover:border-red-300"
                         disabled={isSubmitting}
                       >
-                        <option value="">No pressure, just curious!</option>
+                        <option value="">Select your budget</option>
                         <option value="under-500">Under $500</option>
                         <option value="500-1000">$500 - $1,000</option>
                         <option value="1000-2500">$1,000 - $2,500</option>
@@ -368,13 +426,13 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-black font-semibold">Tell us about your project *</Label>
+                    <Label htmlFor="message" className="text-black font-semibold">Project Details *</Label>
                     <Textarea 
                       id="message" 
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="What's your vision? What kind of content do you create? Any specific ideas or requirements? We'd love to hear about your goals!"
-                      rows={4}
+                      placeholder="Tell us about your vision, goals, and any specific requirements you have for your video project..."
+                      rows={5}
                       className="bg-white border-neutral-300 text-black placeholder:text-neutral-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-300 resize-none hover:border-red-300"
                       required
                       disabled={isSubmitting}
@@ -394,7 +452,7 @@ const Contact = () => {
                     variant="member" 
                     size="xl" 
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -404,7 +462,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Play className="w-5 h-5 mr-2" />
-                        Let's Make Something Amazing Together!
+                        Submit Your Project
                       </>
                     )}
                   </Button>
@@ -413,9 +471,14 @@ const Contact = () => {
             </Card>
           </motion.div>
 
-          {/* Real Stories from Real People */}
-          <motion.div className="mb-12" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.4 }}>
-            <Card className="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 overflow-hidden hover:shadow-lg transition-all duration-500">
+          {/* Testimonial Section */}
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 overflow-hidden hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto">
               <div className="p-8 text-center">
                 <div className="flex justify-center mb-6">
                   <div className="flex gap-1">
@@ -443,103 +506,94 @@ const Contact = () => {
             </Card>
           </motion.div>
 
-          {/* What Makes Us Different */}
-          <motion.div className="mb-12" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.5 }}>
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-black mb-4">Why Creators Choose Us</h2>
-              <p className="text-lg text-neutral-600">We're not just a service – we're your creative partners</p>
+          {/* Why Choose Us Section */}
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+          >
+            <div className="text-center mb-12">
+              <h2 className="section-text text-black mb-6">Why Creators Choose Us</h2>
+              <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+                We're not just a service – we're your creative partners dedicated to your success.
+              </p>
             </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            <div className="grid md:grid-cols-3 gap-8">
               {[
-                { 
-                  icon: "🎯", 
-                  title: "We Actually Care About Your Success", 
-                  desc: "We don't just edit and send. We learn your brand, understand your audience, and become invested in your growth.",
-                  color: "bg-red-50",
-                  iconColor: "text-red-600"
+                {
+                  icon: Target,
+                  title: "Strategic Partnership",
+                  description: "We learn your brand, understand your audience, and become invested in your growth journey.",
+                  color: "text-red-600",
+                  bgColor: "bg-red-50"
                 },
-                { 
-                  icon: "⚡", 
-                  title: "Lightning Fast, But Never Rushed", 
-                  desc: "24-hour delivery doesn't mean cutting corners. We work efficiently because we're passionate about what we do.",
-                  color: "bg-blue-50",
-                  iconColor: "text-blue-600"
+                {
+                  icon: Zap,
+                  title: "Lightning Fast Delivery",
+                  description: "24-hour delivery doesn't mean cutting corners. We work efficiently because we're passionate about what we do.",
+                  color: "text-blue-600",
+                  bgColor: "bg-blue-50"
                 },
-                { 
-                  icon: "🔥", 
-                  title: "Proven Results, Real Relationships", 
-                  desc: "Our clients don't just get views – they get a team that celebrates their wins and supports their journey.",
-                  color: "bg-green-50",
-                  iconColor: "text-green-600"
-                },
-                { 
-                  icon: "💎", 
-                  title: "Quality That Speaks for Itself", 
-                  desc: "We treat every project like it's our own channel. Because when you succeed, we succeed.",
-                  color: "bg-purple-50",
-                  iconColor: "text-purple-600"
+                {
+                  icon: Award,
+                  title: "Quality Guaranteed",
+                  description: "We treat every project like it's our own channel. Because when you succeed, we succeed.",
+                  color: "text-green-600",
+                  bgColor: "bg-green-50"
                 }
               ].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={item.title}
-                  className={`${item.color} p-6 rounded-xl border border-neutral-200 hover:shadow-lg transition-all duration-500 hover:scale-105`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.5 + index * 0.1 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ type: 'spring', stiffness: 80, damping: 18, delay: index * 0.1 }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="text-3xl hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                    <div>
-                      <h4 className="font-bold text-black mb-2 text-lg hover:text-red-600 transition-colors duration-300">{item.title}</h4>
-                      <p className="text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
+                  <Card className="bg-white border border-neutral-200 p-8 h-full hover:shadow-xl transition-all duration-300 group">
+                    <div className={`w-16 h-16 ${item.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <item.icon className={`w-8 h-8 ${item.color}`} />
                     </div>
-                  </div>
+                    <h3 className="text-xl font-bold text-black mb-4">{item.title}</h3>
+                    <p className="text-neutral-600 leading-relaxed">{item.description}</p>
+                  </Card>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Let's Create Something Amazing Together */}
-          <motion.div 
-            className="text-center"
+          {/* Final CTA Section */}
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           >
-            <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl p-12 text-white relative overflow-hidden hover:shadow-2xl transition-all duration-500">
-              <div className="absolute inset-0 bg-black/10"></div>
-              <div className="relative z-10">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-6">Ready to Make Magic Together?</h2>
-                <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                  Join 1000+ creators who've found their creative partners in us. 
-                  Let's turn your vision into viral reality.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a href="/start-project">
-                    <Button 
-                      variant="member"
-                      size="xl" 
-                      className="px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300"
-                    >
-                      <Play className="w-5 h-5 mr-2" />
-                      Let's Start Creating!
-                    </Button>
-                  </a>
-                  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-                    <Button 
-                      variant="about" 
-                      size="xl" 
-                      className="px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300"
-                    >
-                      <MessageCircle className="w-5 h-5 mr-2" />
-                      Chat With Us
-                    </Button>
-                  </a>
-                </div>
+            <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-12 border border-red-200 text-center">
+              <h2 className="section-text text-black mb-6">Ready to Transform Your Content?</h2>
+              <p className="text-xl text-neutral-600 mb-8 max-w-3xl mx-auto">
+                Join 1000+ creators who've found their creative partners in us. 
+                Let's turn your vision into viral reality.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/start-project">
+                  <Button variant="member" size="xl" className="px-8 py-4 text-lg font-semibold">
+                    Start Your Project
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                  <Button variant="about" size="xl" className="px-8 py-4 text-lg font-semibold">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Chat With Us
+                  </Button>
+                </a>
               </div>
             </div>
           </motion.div>
+
         </div>
       </main>
     </div>

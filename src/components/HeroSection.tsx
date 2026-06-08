@@ -28,7 +28,6 @@ const stats = [
 
 const HeroSection = () => {
   return (
-    // Changed min-h-[85vh] to py-20 sm:py-28 so it grows dynamically based on mobile content length without stretching or blurring layout
     <section className="relative min-h-screen w-full bg-neutral-50 text-neutral-900 flex items-center py-20 sm:py-28 overflow-hidden">
       
       {/* STRUCTURE CONTAINER */}
@@ -51,7 +50,6 @@ const HeroSection = () => {
           </motion.div>
           
           {/* WHAT WE DO & WHY IT MATTERS (Core Headline) */}
-          {/* Replaced manual <br /> with standard responsive responsive wrapping and adjusted sizes for crisp rendering */}
           <motion.h1 variants={fadeUpVariants} className="text-3xl sm:text-5xl xl:text-6xl font-black tracking-tight text-neutral-950 leading-[1.1] sm:leading-[1.05]">
             WE HELP CREATORS{" "}
             <br className="hidden sm:inline" />
@@ -66,7 +64,6 @@ const HeroSection = () => {
           </motion.p>
 
           {/* ACTION HANDLERS (Value-Driven CTAs) */}
-          {/* Optimized full width structure for seamless mobile clickability */}
           <motion.div variants={fadeUpVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
             <Link to="/start-project" className="w-full sm:w-auto">
               <Button 
@@ -89,14 +86,10 @@ const HeroSection = () => {
             </Link>
           </motion.div>
           
-          {/* PRICING ANCHOR */}
-          <motion.p variants={fadeUpVariants} className="text-[11px] sm:text-xs text-neutral-400 font-medium pt-1">
-            Enterprise infrastructure packages starting at $75 per finished asset.
-          </motion.p>
+          {/* PRICING ANCHOR - REMOVED */}
         </div>
 
         {/* RIGHT COLUMN: SINGLE DASHBOARD VISUAL & SUBTLE TRUST METRICS */}
-        {/* Adjusted spacing to avoid clashing with the left column items on smaller media wrappers */}
         <div className="lg:col-span-5 space-y-8 sm:space-y-10 lg:pl-6 w-full mt-4 lg:mt-0">
           
           {/* SINGLE DOMINANT PERFORMANCE CARD */}
@@ -128,7 +121,6 @@ const HeroSection = () => {
           </motion.div>
 
           {/* SUBTLE TRUST METRICS GRID */}
-          {/* Changed gap styling to secure layout structure on narrow screens */}
           <motion.div 
             className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-6 border-t border-neutral-200/80 pt-6 sm:pt-8"
             variants={fadeUpVariants}

@@ -159,7 +159,7 @@ const Thumbnails = () => {
             </div>
           </motion.div>
 
-          {/* Thumbnail Video Showcase */}
+          {/* Thumbnail Video Showcase - Redesigned */}
           <motion.div 
             className="mb-24"
             initial={{ opacity: 0, y: 40 }}
@@ -173,37 +173,43 @@ const Thumbnails = () => {
               </p>
             </div>
 
+            {/* Redesigned video cards with improved layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Video 1 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.2 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/thumbnail1"
+                      src="https://player.vimeo.com/video/1066091977"
                       title="Thumbnail Design - CTR Example 1"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       +280% CTR
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.1M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">High-Converting Design</h3>
-                    <p className="text-black mb-4 flex-grow">This thumbnail increased CTR by 280%, generating 2.1M additional views for our client.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Thumbnail</span>
-                      <span className="text-sm text-black">+280% CTR</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">High-Converting Design</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
+                    </div>
+                    <p className="text-black mb-4">This thumbnail increased CTR by 280%, generating 2.1M additional views for our client.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+280% CTR</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">2.1M views</div>
                     </div>
                   </div>
                 </Card>
@@ -211,34 +217,39 @@ const Thumbnails = () => {
 
               {/* Video 2 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/thumbnail2"
+                      src="https://player.vimeo.com/video/1066091977"
                       title="Thumbnail Design - CTR Example 2"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       +320% CTR
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.8M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Click Magnet Design</h3>
-                    <p className="text-black mb-4 flex-grow">This thumbnail design increased CTR by 320%, becoming a true click magnet for our client.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Thumbnail</span>
-                      <span className="text-sm text-black">+320% CTR</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Click Magnet Design</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
+                    </div>
+                    <p className="text-black mb-4">This thumbnail design increased CTR by 320%, becoming a true click magnet for our client.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+320% CTR</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">1.8M views</div>
                     </div>
                   </div>
                 </Card>
@@ -246,34 +257,39 @@ const Thumbnails = () => {
 
               {/* Video 3 */}
               <motion.div
-                className="h-full"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.4 }}
               >
-                <Card className="h-full bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                  <div className="aspect-[9/16] bg-black relative">
+                <Card className="bg-white border border-red-200 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                  <div className="aspect-video bg-black relative">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/thumbnail3"
+                      src="https://player.vimeo.com/video/1066091977"
                       title="Thumbnail Design - CTR Example 3"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       +420% CTR
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.2M views
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Ultimate CTR Booster</h3>
-                    <p className="text-black mb-4 flex-grow">Our highest-performing thumbnail with 420% CTR increase, generating 3.2M additional views.</p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <span className="text-red-600 font-semibold">Thumbnail</span>
-                      <span className="text-sm text-black">+420% CTR</span>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-black">Ultimate CTR Booster</h3>
+                      <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
+                    </div>
+                    <p className="text-black mb-4">Our highest-performing thumbnail with 420% CTR increase, generating 3.2M additional views.</p>
+                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <TrendingUp className="w-4 h-4 text-green-500" />
+                        <span>+420% CTR</span>
+                      </div>
+                      <div className="text-sm font-semibold text-red-600">3.2M views</div>
                     </div>
                   </div>
                 </Card>
@@ -345,148 +361,6 @@ const Thumbnails = () => {
                   </Card>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* Professional Pricing */}
-          <motion.div 
-            className="mb-24"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.3 }}
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-black mb-6">Investment Options</h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
-                Transparent pricing with no hidden fees. Choose the package that aligns with your growth goals.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Starter Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$50</div>
-                  <p className="text-black">Perfect for testing our service</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Professional thumbnail design",
-                    "3 design variations",
-                    "Color psychology optimization",
-                    "High-resolution delivery",
-                    "24-hour delivery",
-                    "2 rounds of revisions",
-                    "Basic analytics report"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Professional Package - Most Popular */}
-              <Card className="bg-white border-2 border-red-500 p-8 relative overflow-visible flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
-                <div className="text-center mb-8 pt-4">
-                  <h3 className="text-2xl font-bold text-black mb-2">Professional</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$40</div>
-                  <p className="text-black">Best value for serious creators</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Starter",
-                    "5 design variations",
-                    "A/B testing setup",
-                    "Performance analytics",
-                    "12-hour delivery",
-                    "Unlimited revisions",
-                    "Priority support",
-                    "Monthly optimization"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="member" size="xl" className="w-full mb-4">
-                      Choose Professional
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-
-              {/* Enterprise Package */}
-              <Card className="bg-white border border-red-200 p-8 relative flex flex-col h-full">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                  <div className="text-5xl font-bold text-black mb-2">$30</div>
-                  <p className="text-black">For agencies & large creators</p>
-                </div>
-                
-                <div className="space-y-4 mb-8 flex-grow">
-                  {[
-                    "Everything in Professional",
-                    "10 design variations",
-                    "Dedicated account manager",
-                    "Custom workflow integration",
-                    "6-hour delivery",
-                    "Unlimited revisions",
-                    "24/7 priority support",
-                    "Weekly optimization calls",
-                    "Custom reporting dashboard"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-black font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-4 mt-auto">
-                  <Link to="/start-project" className="w-full">
-                    <Button variant="about" size="xl" className="w-full mb-4">
-                      Contact Sales
-                    </Button>
-                  </Link>
-                  <Link to="/portfolio" className="w-full">
-                    <Button variant="outline" size="lg" className="w-full">
-                      View Samples
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
             </div>
           </motion.div>
 

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Clock, Eye } from "lucide-react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const portfolioItems = [
   {
@@ -21,10 +21,7 @@ const portfolioItems = [
     challenge: "Sarah was creating beautiful content but struggling with low engagement and couldn't find her authentic voice",
     solution: "We helped her discover her authentic storytelling style and optimized her content for TikTok's algorithm",
     results: ["500K+ new followers", "$180K+ in brand deals", "2.5M+ total views", "Viral content performance"],
-    youtubeId: "o6jQo3-iCao",
-    videoSrc: "/videos/featured-tiktok-viral.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/o6jQo3-iCao/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    vimeoId: "1066091632",
   },
   {
     id: 2,
@@ -40,10 +37,7 @@ const portfolioItems = [
     challenge: "Wanted to improve content quality and reach",
     solution: "Professional content creation with educational focus",
     results: ["$50K+ total revenue", "20K+ engaged subscribers", "Improved content quality", "Better monetization"],
-    youtubeId: undefined,
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/YE7VzlLtp-4/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    vimeoId: "1066091555",
   },
   {
     id: 3,
@@ -59,10 +53,7 @@ const portfolioItems = [
     challenge: "Needed to improve professional positioning",
     solution: "High-end production with strategic storytelling",
     results: ["$80K+ in premium deals", "15K+ authority-building followers", "Improved professional image", "Better industry recognition"],
-    youtubeId: undefined,
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/w7vYhyD3QMM/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    vimeoId: "1066091094",
   },
   {
     id: 4,
@@ -78,10 +69,7 @@ const portfolioItems = [
     challenge: "Stuck at 50K subscribers for 2+ years",
     solution: "YouTube Shorts strategy with improved content",
     results: ["230K+ new subscribers", "4.5M+ total views", "$120K+ in revenue", "Improved channel growth"],
-    youtubeId: undefined,
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/ByXuk9QqQkk/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    vimeoId: "1066090855",
   },
   {
     id: 5,
@@ -97,10 +85,7 @@ const portfolioItems = [
     challenge: "Beautiful content but low engagement",
     solution: "Improved aesthetic consistency and engagement",
     results: ["80K+ new followers", "$45K+ in brand partnerships", "Improved engagement", "Better brand collaborations"],
-    youtubeId: undefined,
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/JMuzlEQz3uo/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    vimeoId: "1066087047",
   },
   {
     id: 6,
@@ -116,171 +101,95 @@ const portfolioItems = [
     challenge: "Complex topic that needed compelling storytelling",
     solution: "Professional documentary production with clear messaging",
     results: ["110K+ engaged followers", "$95K+ in impact funding", "Improved awareness", "Better audience engagement"],
-    youtubeId: undefined,
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    thumbnailSrc: "https://img.youtube.com/vi/eRsGyueVLvQ/maxresdefault.jpg",
-    fallbackVideoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    vimeoId: "1066089898",
   },
 ];
 
 const allCategories = ["All", "TikTok Videos", "Cash Cow Channels", "Magnates Style", "YouTube Shorts", "Instagram Reels", "Documentary Style"];
 
-// ── VideoCard: hover autoplay (desktop) + scroll-into-view autoplay (mobile) ──
-interface VideoCardProps {
-  item: typeof portfolioItems[0];
-  onClick: () => void;
-  index: number;
-}
-
-const VideoCard = ({ item, onClick, index }: VideoCardProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const isMobileRef = useRef(false);
-  const isYouTube = Boolean(item.youtubeId);
+// VideoCard component with autoplay
+const VideoCard = ({ item, onClick, index }) => {
+  const iframeRef = useRef(null);
+  const [playerReady, setPlayerReady] = useState(false);
+  const playerInstanceRef = useRef(null);
 
   useEffect(() => {
-    isMobileRef.current = window.matchMedia("(pointer: coarse)").matches;
+    // Load Vimeo Player API
+    const loadVimeoAPI = () => {
+      if (window.Vimeo) {
+        initializePlayer();
+      } else {
+        const script = document.createElement('script');
+        script.src = "https://player.vimeo.com/api/player.js";
+        script.onload = initializePlayer;
+        document.body.appendChild(script);
+      }
+    };
+
+    const initializePlayer = () => {
+      if (iframeRef.current && window.Vimeo && !playerInstanceRef.current) {
+        const player = new window.Vimeo.Player(iframeRef.current);
+        playerInstanceRef.current = player;
+        player.setVolume(0); // Mute for autoplay
+        player.ready().then(() => {
+          setPlayerReady(true);
+          // Auto play when ready
+          player.play().catch(err => console.log("Autoplay blocked:", err));
+        }).catch(err => console.log("Player ready error:", err));
+      }
+    };
+
+    loadVimeoAPI();
+
+    // Cleanup
+    return () => {
+      if (playerInstanceRef.current) {
+        playerInstanceRef.current.pause();
+      }
+    };
   }, []);
-
-  // Send play/pause commands to YouTube iframe via postMessage
-  const postYT = useCallback((cmd: "playVideo" | "pauseVideo" | "stopVideo") => {
-    iframeRef.current?.contentWindow?.postMessage(
-      JSON.stringify({ event: "command", func: cmd, args: [] }),
-      "*"
-    );
-  }, []);
-
-  const playVideo = useCallback(async () => {
-    if (isYouTube) {
-      postYT("playVideo");
-      setIsPlaying(true);
-      return;
-    }
-    const video = videoRef.current;
-    if (!video) return;
-    try {
-      await video.play();
-      setIsPlaying(true);
-    } catch {
-      // autoplay blocked silently
-    }
-  }, [isYouTube, postYT]);
-
-  const pauseVideo = useCallback(() => {
-    if (isYouTube) {
-      postYT("pauseVideo");
-      setIsPlaying(false);
-      return;
-    }
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-    setIsPlaying(false);
-  }, [isYouTube, postYT]);
-
-  // Desktop: mouse hover
-  const handleMouseEnter = () => { if (!isMobileRef.current) playVideo(); };
-  const handleMouseLeave = () => { if (!isMobileRef.current) pauseVideo(); };
-
-  // Mobile: IntersectionObserver — play when 60% visible
-  useEffect(() => {
-    if (!isMobileRef.current) return;
-    const card = cardRef.current;
-    if (!card) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { e.isIntersecting ? playVideo() : pauseVideo(); });
-      },
-      { threshold: 0.6 }
-    );
-    observer.observe(card);
-    return () => observer.disconnect();
-  }, [playVideo, pauseVideo]);
 
   const initials = item.clientName.split(" ").map((w) => w[0]).join("");
 
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, type: "spring", stiffness: 100, damping: 20 }}
       className="group cursor-pointer"
       onClick={onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
 
-        {/* Thumbnail / Video */}
-        <div className="relative aspect-video overflow-hidden">
+        {/* Video Container */}
+        <div className="relative aspect-video overflow-hidden bg-black">
+          
+          {/* Vimeo Iframe - Always visible and playing */}
+          <iframe
+            ref={iframeRef}
+            className="absolute inset-0 w-full h-full"
+            src={`https://player.vimeo.com/video/${item.vimeoId}?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={item.title}
+            frameBorder="0"
+          />
 
-          {/* Gradient + thumbnail image (shown when not playing) */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${item.thumbnailBg} transition-opacity duration-500 ${isPlaying ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            <img
-              src={item.thumbnailSrc}
-              alt={item.title}
-              className="w-full h-full object-cover"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-            />
+          {/* Auto-playing indicator */}
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            PLAYING
           </div>
-
-          {/* YouTube iframe — rendered when youtubeId present */}
-          {isYouTube ? (
-            <iframe
-              ref={iframeRef}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${isPlaying ? "opacity-100" : "opacity-0"}`}
-              src={`https://www.youtube.com/embed/${item.youtubeId}?enablejsapi=1&autoplay=0&mute=1&loop=1&playlist=${item.youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
-              allow="autoplay; encrypted-media"
-              allowFullScreen={false}
-              title={item.title}
-            />
-          ) : (
-            /* mp4 video element */
-            <video
-              ref={videoRef}
-              src={item.videoSrc}
-              muted
-              playsInline
-              loop
-              preload="none"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? "opacity-100" : "opacity-0"}`}
-              onError={(e) => {
-                const v = e.target as HTMLVideoElement;
-                if (v.src !== item.fallbackVideoSrc) { v.src = item.fallbackVideoSrc; v.load(); }
-              }}
-            />
-          )}
-
-          {/* Play icon — hidden when playing */}
-          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            <div className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-              <svg className="w-5 h-5 ml-0.5 text-neutral-700" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Live pill when playing */}
-          {isPlaying && (
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              Playing
-            </div>
-          )}
 
           {/* Category badge */}
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
+          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm z-10">
             {item.category}
           </div>
 
           {/* Views badge */}
-          <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-md flex items-center gap-1">
+          <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-md flex items-center gap-1 z-10">
             <Eye className="w-3 h-3" />
-            {item.views} views
+            {item.views}
           </div>
         </div>
 
@@ -312,7 +221,7 @@ const VideoCard = ({ item, onClick, index }: VideoCardProps) => {
             <span>{item.duration}</span>
           </div>
 
-          {/* Footer — creator info only, no story button */}
+          {/* Footer */}
           <div className="flex items-center pt-3 border-t border-neutral-100">
             <div className="w-7 h-7 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[11px] font-bold text-neutral-600 flex-shrink-0">
               {initials}
@@ -329,13 +238,13 @@ const VideoCard = ({ item, onClick, index }: VideoCardProps) => {
   );
 };
 
-// ── Main Portfolio Page ──────────────────────────────────────────────────────
+// Main Portfolio Page
 const Portfolio = () => {
-  const [selectedStory, setSelectedStory] = useState<typeof portfolioItems[0] | null>(null);
+  const [selectedStory, setSelectedStory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const handleReadStory = (story: typeof portfolioItems[0]) => {
+  const handleReadStory = (story) => {
     setSelectedStory(story);
     setIsModalOpen(true);
   };
@@ -349,7 +258,7 @@ const Portfolio = () => {
     ? portfolioItems
     : portfolioItems.filter((item) => item.category === activeCategory);
 
-  const getCategoryCount = (category: string) => {
+  const getCategoryCount = (category) => {
     if (category === "All") return portfolioItems.length;
     return portfolioItems.filter((item) => item.category === category).length;
   };
@@ -361,7 +270,7 @@ const Portfolio = () => {
       <main className="pt-20 sm:pt-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 max-w-7xl">
 
-          {/* Hero */}
+          {/* Hero Section */}
           <motion.div
             className="text-left mb-20 max-w-4xl"
             initial={{ opacity: 0, y: 40 }}
@@ -394,7 +303,7 @@ const Portfolio = () => {
             </div>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats Section */}
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -420,13 +329,13 @@ const Portfolio = () => {
             ))}
           </motion.div>
 
-          {/* Success Stories */}
+          {/* Success Stories Section */}
           <div className="mb-24">
             <div className="flex flex-wrap justify-between items-end mb-10">
               <div>
                 <h2 className="text-3xl font-bold text-black mb-1">Real Results. Real Impact.</h2>
                 <p className="text-neutral-500 text-sm">
-                  Hover a card to preview • Scroll on mobile to autoplay
+                  All videos play automatically • Click any card to read the full story
                 </p>
               </div>
             </div>
@@ -481,52 +390,71 @@ const Portfolio = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative bg-black aspect-video lg:aspect-auto">
-                <video
-                  src="/videos/featured-tiktok-viral.mp4"
-                  poster="/videos/thumbnails/featured-tiktok-thumbnail.jpg"
-                  className="w-full h-full object-cover"
-                  autoPlay muted loop playsInline
-                />
-                <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                  2.5M+ Views • 6 Months Duration
-                </div>
-              </div>
-              <div className="p-8 lg:p-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">SC</div>
-                  <div>
-                    <div className="font-bold text-black">Sarah Chen</div>
-                    <div className="text-sm text-neutral-500">Lifestyle Creator</div>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-4">From 10K to 500K: Sarah's Transformation Journey</h3>
-                <blockquote className="text-neutral-700 italic mb-6 border-l-4 border-red-600 pl-4">
-                  "I was creating content for months with barely any engagement. Black Cord didn't just edit my videos – they helped me find my voice and showed me how to connect with my audience."
-                </blockquote>
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div>
-                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Challenge</div>
-                    <p className="text-sm text-neutral-700">Low engagement, unclear niche, inconsistent growth.</p>
-                  </div>
-                  <div>
-                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">Our Approach</div>
-                    <p className="text-sm text-neutral-700">Content strategy, authentic storytelling, algorithm optimization.</p>
-                  </div>
-                  <div>
-                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Results</div>
-                    <p className="text-sm text-neutral-700">500K+ followers, $180K+ in brand deals, viral content success.</p>
-                  </div>
-                </div>
-                <Link to="/success-stories/sarah-chen">
-                  <Button variant="member" className="bg-red-600 hover:bg-red-700">READ FULL STORY</Button>
-                </Link>
-              </div>
-            </div>
+           {/* Featured Story */}
+<motion.div
+  className="mb-24 bg-neutral-50 rounded-3xl overflow-hidden"
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3 }}
+>
+  <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div className="relative bg-black aspect-video lg:aspect-auto overflow-hidden">
+      {/* Vimeo Video - Autoplaying */}
+      <iframe
+        className="absolute inset-0 w-full h-full"
+        src="https://player.vimeo.com/video/1066091632?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        title="Sarah Chen - Featured Success Story"
+        frameBorder="0"
+      />
+      
+      {/* Auto-playing indicator */}
+      <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        PLAYING
+      </div>
+      
+      <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm z-10">
+        2.5M+ Views • 6 Months Duration
+      </div>
+    </div>
+    
+    <div className="p-8 lg:p-12">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">SC</div>
+        <div>
+          <div className="font-bold text-black">Sarah Chen</div>
+          <div className="text-sm text-neutral-500">Lifestyle Creator</div>
+        </div>
+      </div>
+      <h3 className="text-2xl font-bold text-black mb-4">From 10K to 500K: Sarah's Transformation Journey</h3>
+      <blockquote className="text-neutral-700 italic mb-6 border-l-4 border-red-600 pl-4">
+        "I was creating content for months with barely any engagement. Black Cord didn't just edit my videos – they helped me find my voice and showed me how to connect with my audience."
+      </blockquote>
+      <div className="grid grid-cols-3 gap-4 mb-6">
+        <div>
+          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Challenge</div>
+          <p className="text-sm text-neutral-700">Low engagement, unclear niche, inconsistent growth.</p>
+        </div>
+        <div>
+          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">Our Approach</div>
+          <p className="text-sm text-neutral-700">Content strategy, authentic storytelling, algorithm optimization.</p>
+        </div>
+        <div>
+          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Results</div>
+          <p className="text-sm text-neutral-700">500K+ followers, $180K+ in brand deals, viral content success.</p>
+        </div>
+      </div>
+      <Link to="/success-stories/sarah-chen">
+        <Button variant="member" className="bg-red-600 hover:bg-red-700">READ FULL STORY</Button>
+      </Link>
+    </div>
+  </div>
+</motion.div>
           </motion.div>
 
-          {/* CTA */}
+          {/* CTA Section */}
           <motion.div className="text-center" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
             <div className="bg-black rounded-3xl p-12 text-white">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Write Your Success Story?</h2>

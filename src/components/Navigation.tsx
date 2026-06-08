@@ -151,10 +151,6 @@ const Navigation = () => {
                 </div>
               )}
             </div>
-            
-            <Link to="/pricing" className="font-medium text-black no-underline hover:text-red-600 transition-colors interactive-glow text-sm lg:text-base">
-              Pricing
-            </Link>
             <Link to="/contact" className="font-medium text-black no-underline hover:text-red-600 transition-colors interactive-glow text-sm lg:text-base">
               Contact
             </Link>
@@ -232,13 +228,7 @@ const Navigation = () => {
               )}
             </div>
             
-            <Link 
-              to="/pricing" 
-              onClick={() => setMobileOpen(false)} 
-              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
-            >
-              Pricing
-            </Link>
+            {/* PRICING LINK REMOVED */}
             <Link 
               to="/contact" 
               onClick={() => setMobileOpen(false)} 

@@ -49,58 +49,138 @@ const AboutSection = () => {
         <div className="osmo-particle" style={{left: '93%', animationDelay: '16.5s'}}></div>
       </div>
 
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-          {/* Left Content */}
-          <motion.div className="space-y-4 sm:space-y-6" initial="hidden" animate="visible" variants={leftVariants}>
-            <h2 className="section-text text-foreground leading-tight">
-              <span className="text-red-600">We're Not Just Editors</span>
-              <br />
-              We're Your Creative Partners
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Here's the thing - we've been where you are. We know the struggle of creating content that actually gets watched. 
-              That's why we don't just edit videos; we craft stories that hook viewers from the first second and keep them coming back for more.
-            </p>
-            <div className="space-y-4">
-              <motion.div className="flex items-center gap-3" initial="hidden" animate="visible" variants={fadeVariants} transition={{ delay: 0.2 }}>
-                <div className="w-6 h-6 text-green-400">✓</div>
-                <span className="text-muted-foreground">We make videos that actually make money</span>
-              </motion.div>
-              <motion.div className="flex items-center gap-3" initial="hidden" animate="visible" variants={fadeVariants} transition={{ delay: 0.4 }}>
-                <div className="w-6 h-6 text-green-400">✓</div>
-                <span className="text-muted-foreground">TikTok & Instagram content that goes viral</span>
-              </motion.div>
-              <motion.div className="flex items-center gap-3" initial="hidden" animate="visible" variants={fadeVariants} transition={{ delay: 0.6 }}>
-                <div className="w-6 h-6 text-green-400">✓</div>
-                <span className="text-muted-foreground">Documentary-style videos that keep people watching</span>
-              </motion.div>
-            </div>
-          </motion.div>
+      <div className="container mx-auto max-w-6xl relative z-10 px-4 sm:px-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
+    {/* Left Content */}
+    <motion.div className="space-y-6 sm:space-y-8" initial="hidden" animate="visible" variants={leftVariants}>
+      {/* Main Heading */}
+      <div className="space-y-3">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          <span className="relative inline-block">
+            <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+              We're Not Just Editors
+            </span>
+            <svg className="absolute -bottom-2 left-0 w-full" height="4" viewBox="0 0 300 4" preserveAspectRatio="none">
+              <line x1="0" y1="2" x2="300" y2="2" stroke="url(#gradient)" strokeWidth="2" strokeDasharray="6 4"/>
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#ef4444"/>
+                  <stop offset="100%" stopColor="#dc2626"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <br />
+          <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            We're Your Creative Partners
+          </span>
+        </h2>
+        
+        {/* Decorative element */}
+        <div className="w-20 h-1 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
+      </div>
+
+      {/* Description Text */}
+      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg border-l-4 border-red-500/30 pl-5">
+        Here's the thing — we've been where you are. We know the struggle of creating content that actually gets watched. 
+        That's why we don't just edit videos; <span className="text-foreground font-medium">we craft stories</span> that hook viewers from the first second and keep them coming back for more.
+      </p>
+
+      {/* Benefits List */}
+      <div className="space-y-5">
+        <motion.div 
+          className="flex items-start gap-4 group" 
+          initial="hidden" 
+          animate="visible" 
+          variants={fadeVariants} 
+          transition={{ delay: 0.2 }}
+        >
+          <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <span className="text-foreground font-semibold">We make videos that actually make money</span>
+            <p className="text-sm text-muted-foreground/80 mt-1">Content that drives conversions and boosts your ROI</p>
+          </div>
+        </motion.div>
+        
+        <motion.div 
+          className="flex items-start gap-4 group" 
+          initial="hidden" 
+          animate="visible" 
+          variants={fadeVariants} 
+          transition={{ delay: 0.4 }}
+        >
+          <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-pink-400 to-rose-500 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <span className="text-foreground font-semibold">TikTok & Instagram content that goes viral</span>
+            <p className="text-sm text-muted-foreground/80 mt-1">Optimized for algorithms to maximize reach and engagement</p>
+          </div>
+        </motion.div>
+        
+        <motion.div 
+          className="flex items-start gap-4 group" 
+          initial="hidden" 
+          animate="visible" 
+          variants={fadeVariants} 
+          transition={{ delay: 0.6 }}
+        >
+          <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <span className="text-foreground font-semibold">Documentary-style videos that keep people watching</span>
+            <p className="text-sm text-muted-foreground/80 mt-1">Storytelling that increases watch time and retention</p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Optional Stats Bar */}
+      <motion.div 
+        className="pt-4 flex flex-wrap gap-6 border-t border-border/50"
+        initial="hidden"
+        animate="visible"
+        variants={fadeVariants}
+        transition={{ delay: 0.8 }}
+      >
+        <div>
+          <div className="text-2xl font-bold text-red-500">500+</div>
+          <div className="text-xs text-muted-foreground">Happy Clients</div>
+        </div>
+        <div>
+          <div className="text-2xl font-bold text-red-500">10M+</div>
+          <div className="text-xs text-muted-foreground">Views Generated</div>
+        </div>
+        <div>
+          <div className="text-2xl font-bold text-red-500">98%</div>
+          <div className="text-xs text-muted-foreground">Retention Rate</div>
+        </div>
+      </motion.div>
+    </motion.div>
 
           {/* Right Content - Video Showcase */}
           <motion.div className="relative scale-100 sm:scale-105 lg:scale-110 xl:scale-125 order-first md:order-last" initial="hidden" animate="visible" variants={rightVariants}>
             <div className="aspect-video bg-gradient-to-br from-card to-accent/5 rounded-2xl border-2 border-border/50 flex items-center justify-center group hover:border-red-500/50 transition-smooth glow-box overflow-hidden shadow-2xl">
               {/* Video Element */}
-              <video 
-                className="w-full h-full object-cover rounded-2xl"
-                controls
-                poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4MCIgaGVpZ2h0PSI3MjAiIHZpZXdCb3g9IjAgMCAxMjgwIDcyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyODAiIGhlaWdodD0iNzIwIiBmaWxsPSIjMDAwMDAwIi8+Cjx0ZXh0IHg9IjY0MCIgeT0iMzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJSQU5EIFZJREVPIFNIT1dDQVNFPC90ZXh0Pgo8L3N2Zz4K"
-              >
-                <source src="/videos/portfolio-showcase.mp4" type="video/mp4" />
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              
-              {/* Overlay elements */}
-              <div className="absolute top-6 left-6 text-white bg-black/70 px-5 py-3 rounded-full backdrop-blur-sm">
-                <span className="text-lg font-bold">Portfolio Showcase</span>
-              </div>
-              
-              <div className="absolute bottom-6 right-6 text-white bg-black/70 px-5 py-3 rounded-full backdrop-blur-sm">
-                <span className="text-lg font-semibold">500+ success stories</span>
-              </div>
-              
+              {/* Vimeo Embed */}
+<div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
+  <iframe 
+    src="https://player.vimeo.com/video/1066090855?autoplay=1&muted=1&loop=0&byline=0&portrait=0&title=0"
+    className="absolute top-0 left-0 w-full h-full"
+    frameBorder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowFullScreen
+    title="Petra & Lukáš Wedding"
+  />
+</div> 
               {/* Floating elements */}
               <div className="absolute top-6 right-6 w-16 h-16 bg-red-500/15 rounded-full animate-float delay-500"></div>
               <div className="absolute bottom-8 left-8 w-12 h-12 bg-red-400/15 rounded-full animate-float delay-1000"></div>

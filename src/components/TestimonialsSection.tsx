@@ -143,16 +143,16 @@ const getChipIconSize = (category: string, isMobile: boolean): string => {
 
 const videoData = {
   Reels: [
-    {
-      id: 1,
-      title: "UI ANIMATION",
-      author: "Sarah Chen",
-      explanation: "From 10K to 2M+ subscribers using advanced short-form content strategy.",
-      duration: "0:45",
-      views: "2.3M",
-      videoUrl: "https://drive.google.com/file/d/1vaw_uTNjIq0Yxx1qaLK8BX3TIkkO8E6V/view?usp=sharing",
-      ctaLink: "#"
-    },
+   {
+  id: 1,
+  title: "UI ANIMATION",
+  author: "Sarah Chen",
+  explanation: "From 10K to 2M+ subscribers using advanced short-form content strategy.",
+  duration: "0:45",
+  views: "2.3M",
+  videoUrl: "https://player.vimeo.com/video/1068495229",
+  ctaLink: "#"
+},
     {
       id: 2,
       title: "BRAND STORY",
@@ -160,7 +160,7 @@ const videoData = {
       explanation: "How we turned boring product demos into viral content that generates $500K+.",
       duration: "1:20",
       views: "1.8M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_2/preview",
+      videoUrl: "https://player.vimeo.com/video/1066199796",
       ctaLink: "#"
     },
     {
@@ -170,7 +170,7 @@ const videoData = {
       explanation: "Sustainability content that actually moves people to action and drives sales.",
       duration: "0:58",
       views: "3.1M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_3/preview",
+      videoUrl: "https://player.vimeo.com/video/1066154660",
       ctaLink: "#"
     },
     {
@@ -180,7 +180,7 @@ const videoData = {
       explanation: "Documentary-style storytelling that helped secure Series A funding.",
       duration: "1:15",
       views: "4.2M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_4/preview",
+      videoUrl: "https://player.vimeo.com/video/1066093854",
       ctaLink: "#"
     }
   ],
@@ -192,7 +192,7 @@ const videoData = {
       explanation: "500K+ regular views after implementing our VSL framework for Instagram Reels.",
       duration: "2:30",
       views: "892K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_5/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091977",
       ctaLink: "#"
     },
     {
@@ -202,7 +202,7 @@ const videoData = {
       explanation: "Fast turnaround, incredible quality, and strategic partnership that raised $2M.",
       duration: "3:15",
       views: "1.2M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_6/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091555",
       ctaLink: "#"
     },
     {
@@ -212,7 +212,7 @@ const videoData = {
       explanation: "Attention-grabbing hooks that increased retention by 300% within weeks.",
       duration: "1:55",
       views: "756K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_7/preview",
+      videoUrl: "https://player.vimeo.com/video/1066089898",
       ctaLink: "#"
     },
     {
@@ -222,7 +222,7 @@ const videoData = {
       explanation: "How we engineered emotional responses that drive 7-figure campaigns.",
       duration: "2:45",
       views: "1.1M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_8/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091632",
       ctaLink: "#"
     }
   ],
@@ -234,7 +234,7 @@ const videoData = {
       explanation: "Documentary-style wedding film that captured every authentic moment beautifully.",
       duration: "4:20",
       views: "345K",
-      videoUrl: "/public/videos/Nikola & Eric.mp4",
+      videoUrl: "https://player.vimeo.com/video/1066091094",
       ctaLink: "#"
     },
     {
@@ -244,7 +244,7 @@ const videoData = {
       explanation: "Aerial storytelling that elevated destination wedding production value.",
       duration: "3:45",
       views: "512K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_10/preview",
+      videoUrl: "https://player.vimeo.com/video/1066090855",
       ctaLink: "#"
     },
     {
@@ -254,7 +254,7 @@ const videoData = {
       explanation: "Real-time editing magic delivered during the reception to roaring applause.",
       duration: "2:50",
       views: "278K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_11/preview",
+      videoUrl: "https://player.vimeo.com/video/1066090625",
       ctaLink: "#"
     },
     {
@@ -264,7 +264,7 @@ const videoData = {
       explanation: "Emotional storytelling that made family and friends cry tears of joy.",
       duration: "5:10",
       views: "623K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_12/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091094",
       ctaLink: "#"
     }
   ],
@@ -276,7 +276,7 @@ const videoData = {
       explanation: "Professional-grade podcast production that increased listener retention by 200%.",
       duration: "15:00",
       views: "1.5M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_13/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091632",
       ctaLink: "#"
     },
     {
@@ -286,7 +286,7 @@ const videoData = {
       explanation: "Turning 2-hour conversations into 50+ viral clips generating millions of views.",
       duration: "0:60",
       views: "4.2M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_14/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091632",
       ctaLink: "#"
     },
     {
@@ -296,7 +296,7 @@ const videoData = {
       explanation: "Visual storytelling that keeps viewers engaged through long-form content.",
       duration: "22:30",
       views: "892K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_15/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091632",
       ctaLink: "#"
     },
     {
@@ -306,7 +306,7 @@ const videoData = {
       explanation: "Professional mixing and mastering that competes with top-tier networks.",
       duration: "18:45",
       views: "1.1M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_16/preview",
+      videoUrl: "https://player.vimeo.com/video/1066091632",
       ctaLink: "#"
     }
   ],
@@ -318,7 +318,7 @@ const videoData = {
       explanation: "Cinematic case study that helped raise $2M in series A funding.",
       duration: "8:30",
       views: "2.1M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_17/preview",
+      videoUrl: "https://player.vimeo.com/video/1066093431",
       ctaLink: "#"
     },
     {
@@ -328,7 +328,7 @@ const videoData = {
       explanation: "Emotional brand documentary that increased customer lifetime value by 400%.",
       duration: "6:45",
       views: "1.8M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_18/preview",
+      videoUrl: "https://player.vimeo.com/video/1066093431",
       ctaLink: "#"
     },
     {
@@ -338,7 +338,7 @@ const videoData = {
       explanation: "Authentic storytelling that humanized the brand and drove partnership deals.",
       duration: "10:20",
       views: "956K",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_19/preview",
+      videoUrl: "https://player.vimeo.com/video/1066093431",
       ctaLink: "#"
     },
     {
@@ -348,7 +348,7 @@ const videoData = {
       explanation: "Data-driven documentary style that secured government grants and funding.",
       duration: "7:15",
       views: "1.3M",
-      videoUrl: "https://drive.google.com/file/d/SAMPLE_FILE_ID_20/preview",
+      videoUrl: "https://player.vimeo.com/video/1066093431",
       ctaLink: "#"
     }
   ]
