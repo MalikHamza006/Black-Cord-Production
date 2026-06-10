@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -30,8 +29,6 @@ const Thumbnails = () => {
         <div className="osmo-particle" style={{left: '78%', animationDelay: '13.5s'}}></div>
         <div className="osmo-particle" style={{left: '88%', animationDelay: '15.5s'}}></div>
       </div>
-
-      <Navigation />
       
       <main className="pt-24 relative z-10">
         <div className="container mx-auto px-6 py-12">
@@ -191,16 +188,13 @@ const Thumbnails = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      +280% CTR
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.1M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">High-Converting Design</h3>
+                      <h3 className="text-xl font-bold text-black">Alex Hormozi style Talking Head Video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
                     </div>
                     <p className="text-black mb-4">This thumbnail increased CTR by 280%, generating 2.1M additional views for our client.</p>
@@ -231,16 +225,13 @@ const Thumbnails = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      +320% CTR
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.8M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Click Magnet Design</h3>
+                      <h3 className="text-xl font-bold text-black">Alex Hormozi style Talking Head Video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
                     </div>
                     <p className="text-black mb-4">This thumbnail design increased CTR by 320%, becoming a true click magnet for our client.</p>
@@ -271,16 +262,13 @@ const Thumbnails = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      +420% CTR
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.2M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Ultimate CTR Booster</h3>
+                      <h3 className="text-xl font-bold text-black">Alex Hormozi style Talking Head Video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Thumbnail</span>
                     </div>
                     <p className="text-black mb-4">Our highest-performing thumbnail with 420% CTR increase, generating 3.2M additional views.</p>

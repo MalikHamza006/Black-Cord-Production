@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -190,16 +189,13 @@ const DocumentaryStyle = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      CINEMATIC
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.8M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Storytelling Mastery</h3>
+                      <h3 className="text-xl font-bold text-black">Aakarsh CV Talking head video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
                     </div>
                     <p className="text-black mb-4">This documentary captivated audiences with powerful storytelling, generating $400K+ in revenue.</p>
@@ -230,16 +226,13 @@ const DocumentaryStyle = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      EPIC
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.3M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Visual Excellence</h3>
+                      <h3 className="text-xl font-bold text-black">Aakarsh CV Talking head video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
                     </div>
                     <p className="text-black mb-4">This documentary showcased visual excellence, resulting in $600K+ in revenue and brand partnerships.</p>
@@ -270,16 +263,13 @@ const DocumentaryStyle = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      MASTERPIECE
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.1M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Narrative Excellence</h3>
+                      <h3 className="text-xl font-bold text-black">Aakarsh CV Talking head video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Documentary</span>
                     </div>
                     <p className="text-black mb-4">Our highest-performing documentary with 3.1M views and $800K+ in revenue through multiple streams.</p>

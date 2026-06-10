@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -33,8 +32,6 @@ const Index = () => {
         <div className="osmo-particle" style={{left: '78%', animationDelay: '13.5s'}}></div>
         <div className="osmo-particle" style={{left: '88%', animationDelay: '15.5s'}}></div>
       </div>
-
-      <Navigation />
 
       {/* Main Content */}
       <main className="pt-20 sm:pt-24 relative z-10">

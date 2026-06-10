@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -30,8 +29,6 @@ const MotionGraphics = () => {
         <div className="osmo-particle" style={{left: '78%', animationDelay: '13.5s'}}></div>
         <div className="osmo-particle" style={{left: '88%', animationDelay: '15.5s'}}></div>
       </div>
-
-      <Navigation />
       
       <main className="pt-24 relative z-10">
         <div className="container mx-auto px-6 py-12">
@@ -191,16 +188,13 @@ const MotionGraphics = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      DYNAMIC
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       1.9M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Dynamic Visual Effects</h3>
+                      <h3 className="text-xl font-bold text-black">Imad Gadzhi style motions graphics</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
                     </div>
                     <p className="text-black mb-4">This motion graphics video captivated audiences with stunning visual effects, generating 1.9M views.</p>
@@ -231,16 +225,13 @@ const MotionGraphics = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      ANIMATED
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.4M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Animated Storytelling</h3>
+                      <h3 className="text-xl font-bold text-black">Imad Gadzhi style motions graphics</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
                     </div>
                     <p className="text-black mb-4">This animated motion graphics video told a compelling story, resulting in 2.4M views and high engagement.</p>
@@ -271,16 +262,13 @@ const MotionGraphics = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      STUNNING
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.1M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Visual Excellence</h3>
+                      <h3 className="text-xl font-bold text-black">Imad Gadzhi style motions graphics</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Motion</span>
                     </div>
                     <p className="text-black mb-4">Our highest-performing motion graphics video with 3.1M views and stunning visual effects.</p>

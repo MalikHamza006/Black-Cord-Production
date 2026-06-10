@@ -69,7 +69,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-2 sm:space-x-3 animate-fade-in">
             <Link to="/" className="flex items-center space-x-2 sm:space-x-3" onClick={() => setMobileOpen(false)}>
               <img
-                src="ascets/logo.png"
+                src="/ascets/logo.png"
                 alt="Black Cord Production logo"
                 className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                 onError={(e) => {
@@ -232,16 +232,9 @@ const Navigation = () => {
             <Link 
               to="/contact" 
               onClick={() => setMobileOpen(false)} 
-              className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base border-b border-neutral-100/50"
-            >
-              Contact
-            </Link>
-            <Link 
-              to="/client-login" 
-              onClick={() => setMobileOpen(false)} 
               className="text-neutral-900 font-medium no-underline hover:text-red-600 transition-colors w-full py-2.5 text-base"
             >
-              Client Login
+              Contact
             </Link>
             
             <div className="w-full pt-4 mt-2">

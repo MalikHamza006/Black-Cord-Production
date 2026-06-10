@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -30,8 +29,6 @@ const FacelessVideos = () => {
         <div className="osmo-particle" style={{left: '78%', animationDelay: '13.5s'}}></div>
         <div className="osmo-particle" style={{left: '88%', animationDelay: '15.5s'}}></div>
       </div>
-
-      <Navigation />
       
       <main className="pt-24 relative z-10">
         <div className="container mx-auto px-6 py-12">
@@ -191,16 +188,13 @@ const FacelessVideos = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      PRIVATE
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.8M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Privacy-First Content</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Faceless</span>
                     </div>
                     <p className="text-black mb-4">This faceless video generated 2.8M views while maintaining complete privacy and anonymity.</p>
@@ -231,16 +225,13 @@ const FacelessVideos = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      ANONYMOUS
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.2M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Anonymous Success</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Faceless</span>
                     </div>
                     <p className="text-black mb-4">This video achieved 3.2M views while keeping the creator completely anonymous and private.</p>
@@ -271,16 +262,13 @@ const FacelessVideos = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      SECURE
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       4.1M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Secure Viral Content</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Faceless</span>
                     </div>
                     <p className="text-black mb-4">Our highest-performing faceless video with 4.1M views while maintaining complete security and privacy.</p>

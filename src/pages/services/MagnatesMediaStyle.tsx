@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -190,15 +189,12 @@ const MagnatesMediaStyle = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold">
-                      PREMIUM
-                    </div>
                     <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">
                       2.1M views
                     </div>
                   </div>
                   <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Industry Authority</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Magnates Media Style Edit</h3>
                     <p className="text-sm sm:text-base text-black mb-4 flex-grow">This video positioned our client as a thought leader, generating $300K+ in premium deals.</p>
                     <div className="flex justify-between items-center mt-auto gap-2">
                       <span className="text-red-600 font-semibold text-sm sm:text-base">Magnates Style</span>
@@ -225,15 +221,12 @@ const MagnatesMediaStyle = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold">
-                      ELITE
-                    </div>
                     <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">
                       1.8M views
                     </div>
                   </div>
                   <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Brand Elevation</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Magnates Media Style Edit</h3>
                     <p className="text-sm sm:text-base text-black mb-4 flex-grow">This video elevated our client's brand to premium status, closing $500K+ in high-value deals.</p>
                     <div className="flex justify-between items-center mt-auto gap-2">
                       <span className="text-red-600 font-semibold text-sm sm:text-base">Magnates Style</span>
@@ -260,15 +253,12 @@ const MagnatesMediaStyle = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold">
-                      LUXURY
-                    </div>
                     <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm">
                       2.9M views
                     </div>
                   </div>
                   <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Luxury Positioning</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-black mb-2">Magnates Media Style Edit</h3>
                     <p className="text-sm sm:text-base text-black mb-4 flex-grow">Our highest-value video that positioned the client as a luxury brand, generating $800K+ in deals.</p>
                     <div className="flex justify-between items-center mt-auto gap-2">
                       <span className="text-red-600 font-semibold text-sm sm:text-base">Magnates Style</span>

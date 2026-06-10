@@ -1,37 +1,36 @@
-import Navigation from "@/components/Navigation";
 import StoryModal from "@/components/StoryModal";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Clock, Eye } from "lucide-react";
+import { ArrowRight, ExternalLink, Clock, Eye, Play } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 const portfolioItems = [
   {
     id: 1,
-    title: "Meet Sarah Chen – from struggling creator to TikTok sensation",
+    title: "Meet Imad Gadzhi – from struggling creator to TikTok sensation",
     category: "TikTok Videos",
     views: "2.5M+",
     subscribers: "500K+",
     revenue: "$180K+",
     thumbnailBg: "from-pink-50 to-rose-100",
-    clientName: "Sarah Chen",
+    clientName: "Imad Gadzhi",
     clientRole: "Lifestyle Creator",
     duration: "6 months",
-    challenge: "Sarah was creating beautiful content but struggling with low engagement and couldn't find her authentic voice",
+    challenge: "Imad Gadzhi was creating beautiful content but struggling with low engagement and couldn't find her authentic voice",
     solution: "We helped her discover her authentic storytelling style and optimized her content for TikTok's algorithm",
     results: ["500K+ new followers", "$180K+ in brand deals", "2.5M+ total views", "Viral content performance"],
     vimeoId: "1066091632",
   },
   {
     id: 2,
-    title: "Educational Content Growth",
+    title: "Alex Hormozi style - cash cow story",
     category: "Cash Cow Channels",
     views: "1.2M+",
     subscribers: "20K+",
     revenue: "$50K+",
     thumbnailBg: "from-emerald-50 to-green-100",
-    clientName: "Marcus Rodriguez",
+    clientName: "Alex Hormozi",
     clientRole: "Finance Educator",
     duration: "8 months",
     challenge: "Wanted to improve content quality and reach",
@@ -41,13 +40,13 @@ const portfolioItems = [
   },
   {
     id: 3,
-    title: "Business Authority Building",
+    title: "Magnates Media Style Edit",
     category: "Magnates Style",
     views: "800K+",
     subscribers: "15K+",
     revenue: "$80K+",
     thumbnailBg: "from-amber-50 to-yellow-100",
-    clientName: "David Thompson",
+    clientName: "Magnates",
     clientRole: "Business Consultant",
     duration: "4 months",
     challenge: "Needed to improve professional positioning",
@@ -57,14 +56,14 @@ const portfolioItems = [
   },
   {
     id: 4,
-    title: "YouTube Shorts Growth",
+    title: "Petra & Lukáš Wedding",
     category: "YouTube Shorts",
     views: "4.5M+",
     subscribers: "230K+",
     revenue: "$120K+",
     thumbnailBg: "from-red-50 to-rose-100",
-    clientName: "Alex Kim",
-    clientRole: "Gaming Creator",
+    clientName: "Petra & Lukáš",
+    clientRole: "Wedding Planner",
     duration: "8 months",
     challenge: "Stuck at 50K subscribers for 2+ years",
     solution: "YouTube Shorts strategy with improved content",
@@ -73,14 +72,14 @@ const portfolioItems = [
   },
   {
     id: 5,
-    title: "Instagram Reels Growth",
+    title: "I Edit this Real Estate Video.",
     category: "Instagram Reels",
     views: "1.8M+",
     subscribers: "80K+",
     revenue: "$45K+",
     thumbnailBg: "from-purple-50 to-violet-100",
     clientName: "Emma Williams",
-    clientRole: "Fashion Influencer",
+    clientRole: "Real Estate Influencer",
     duration: "5 months",
     challenge: "Beautiful content but low engagement",
     solution: "Improved aesthetic consistency and engagement",
@@ -89,7 +88,7 @@ const portfolioItems = [
   },
   {
     id: 6,
-    title: "Documentary Content Success",
+    title: "Documentary Media Style Edit",
     category: "Documentary Style",
     views: "3M+",
     subscribers: "110K+",
@@ -108,46 +107,41 @@ const portfolioItems = [
 const allCategories = ["All", "TikTok Videos", "Cash Cow Channels", "Magnates Style", "YouTube Shorts", "Instagram Reels", "Documentary Style"];
 
 // VideoCard component with autoplay
+// VideoCard component with optimized dynamic load-on-hover
 const VideoCard = ({ item, onClick, index }) => {
-  const iframeRef = useRef(null);
-  const [playerReady, setPlayerReady] = useState(false);
-  const playerInstanceRef = useRef(null);
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
-    // Load Vimeo Player API
-    const loadVimeoAPI = () => {
-      if (window.Vimeo) {
-        initializePlayer();
-      } else {
-        const script = document.createElement('script');
-        script.src = "https://player.vimeo.com/api/player.js";
-        script.onload = initializePlayer;
-        document.body.appendChild(script);
-      }
-    };
-
-    const initializePlayer = () => {
-      if (iframeRef.current && window.Vimeo && !playerInstanceRef.current) {
-        const player = new window.Vimeo.Player(iframeRef.current);
-        playerInstanceRef.current = player;
-        player.setVolume(0); // Mute for autoplay
-        player.ready().then(() => {
-          setPlayerReady(true);
-          // Auto play when ready
-          player.play().catch(err => console.log("Autoplay blocked:", err));
-        }).catch(err => console.log("Player ready error:", err));
-      }
-    };
-
-    loadVimeoAPI();
-
-    // Cleanup
+    let active = true;
+    fetch(`https://vimeo.com/api/v2/video/${item.vimeoId}.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch vimeo details");
+        return res.json();
+      })
+      .then((data) => {
+        if (active && data && data[0] && data[0].thumbnail_large) {
+          const secureUrl = data[0].thumbnail_large.replace("http://", "https://");
+          setThumbnailUrl(secureUrl);
+        }
+      })
+      .catch((err) => {
+        console.log("Vimeo thumbnail fetch failed:", err);
+      });
     return () => {
-      if (playerInstanceRef.current) {
-        playerInstanceRef.current.pause();
-      }
+      active = false;
     };
-  }, []);
+  }, [item.vimeoId]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setIframeLoaded(false);
+  };
 
   const initials = item.clientName.split(" ").map((w) => w[0]).join("");
 
@@ -161,25 +155,66 @@ const VideoCard = ({ item, onClick, index }) => {
     >
       <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
 
-        {/* Video Container */}
-        <div className="relative aspect-video overflow-hidden bg-black">
-          
-          {/* Vimeo Iframe - Always visible and playing */}
-          <iframe
-            ref={iframeRef}
-            className="absolute inset-0 w-full h-full"
-            src={`https://player.vimeo.com/video/${item.vimeoId}?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0`}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            title={item.title}
-            frameBorder="0"
-          />
+        {/* Video Container with hover lazy loading */}
+        <div 
+          className="relative aspect-video overflow-hidden bg-black"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Placeholder with thumbnail image or gradient */}
+          {(!isHovered || !iframeLoaded) && (
+            <div className={`absolute inset-0 bg-gradient-to-br ${item.thumbnailBg} flex items-center justify-center transition-all duration-500`}>
+              {thumbnailUrl ? (
+                <img 
+                  src={thumbnailUrl} 
+                  alt={item.title} 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="text-neutral-400 font-bold text-3xl opacity-30 select-none">
+                  {initials}
+                </div>
+              )}
+              
+              {/* Play Overlay */}
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-red-600 transition-all duration-300">
+                  <Play className="w-6 h-6 text-black group-hover:text-white fill-current translate-x-0.5" />
+                </div>
+              </div>
+            </div>
+          )}
 
-          {/* Auto-playing indicator */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            PLAYING
-          </div>
+          {/* Autoplay Vimeo Iframe loads only on hover */}
+          {isHovered && (
+            <iframe
+              className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
+                iframeLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              src={`https://player.vimeo.com/video/${item.vimeoId}?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0`}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title={item.title}
+              frameBorder="0"
+              onLoad={() => setIframeLoaded(true)}
+            />
+          )}
+
+          {/* Autoplay loading indicator */}
+          {isHovered && !iframeLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] z-10">
+              <span className="w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            </div>
+          )}
+
+          {/* Playing indicator */}
+          {isHovered && iframeLoaded && (
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              PLAYING
+            </div>
+          )}
 
           {/* Category badge */}
           <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm z-10">
@@ -265,7 +300,6 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
 
       <main className="pt-20 sm:pt-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 max-w-7xl">
@@ -390,68 +424,60 @@ const Portfolio = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-           {/* Featured Story */}
-<motion.div
-  className="mb-24 bg-neutral-50 rounded-3xl overflow-hidden"
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.3 }}
->
-  <div className="grid grid-cols-1 lg:grid-cols-2">
-    <div className="relative bg-black aspect-video lg:aspect-auto overflow-hidden">
-      {/* Vimeo Video - Autoplaying */}
-      <iframe
-        className="absolute inset-0 w-full h-full"
-        src="https://player.vimeo.com/video/1066091632?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        title="Sarah Chen - Featured Success Story"
-        frameBorder="0"
-      />
-      
-      {/* Auto-playing indicator */}
-      <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
-        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-        PLAYING
-      </div>
-      
-      <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm z-10">
-        2.5M+ Views • 6 Months Duration
-      </div>
-    </div>
-    
-    <div className="p-8 lg:p-12">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">SC</div>
-        <div>
-          <div className="font-bold text-black">Sarah Chen</div>
-          <div className="text-sm text-neutral-500">Lifestyle Creator</div>
-        </div>
-      </div>
-      <h3 className="text-2xl font-bold text-black mb-4">From 10K to 500K: Sarah's Transformation Journey</h3>
-      <blockquote className="text-neutral-700 italic mb-6 border-l-4 border-red-600 pl-4">
-        "I was creating content for months with barely any engagement. Black Cord didn't just edit my videos – they helped me find my voice and showed me how to connect with my audience."
-      </blockquote>
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div>
-          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Challenge</div>
-          <p className="text-sm text-neutral-700">Low engagement, unclear niche, inconsistent growth.</p>
-        </div>
-        <div>
-          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">Our Approach</div>
-          <p className="text-sm text-neutral-700">Content strategy, authentic storytelling, algorithm optimization.</p>
-        </div>
-        <div>
-          <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Results</div>
-          <p className="text-sm text-neutral-700">500K+ followers, $180K+ in brand deals, viral content success.</p>
-        </div>
-      </div>
-      <Link to="/success-stories/sarah-chen">
-        <Button variant="member" className="bg-red-600 hover:bg-red-700">READ FULL STORY</Button>
-      </Link>
-    </div>
-  </div>
-</motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="relative bg-black aspect-video lg:aspect-auto overflow-hidden">
+                {/* Vimeo Video - Autoplaying */}
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://player.vimeo.com/video/1066091632?autoplay=1&muted=1&loop=1&controls=0&badge=0&autopause=0&playsinline=1&background=1&byline=0&portrait=0&title=0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  title="Sarah Chen - Featured Success Story"
+                  frameBorder="0"
+                />
+                
+                {/* Auto-playing indicator */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  PLAYING
+                </div>
+                
+                <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm z-10">
+                  2.5M+ Views • 6 Months Duration
+                </div>
+              </div>
+              
+              <div className="p-8 lg:p-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">IG</div>
+                  <div>
+                    <div className="font-bold text-black">Imad Gadzhi style </div>
+                    <div className="text-sm text-neutral-500">motions graphics</div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-4">From 10K to 500K: Imad Gadzhi Transformation Journey</h3>
+                <blockquote className="text-neutral-700 italic mb-6 border-l-4 border-red-600 pl-4">
+                  "I was creating content for months with barely any engagement. Black Cord didn't just edit my videos – they helped me find my voice and showed me how to connect with my audience."
+                </blockquote>
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div>
+                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Challenge</div>
+                    <p className="text-sm text-neutral-700">Low engagement, unclear niche, inconsistent growth.</p>
+                  </div>
+                  <div>
+                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">Our Approach</div>
+                    <p className="text-sm text-neutral-700">Content strategy, authentic storytelling, algorithm optimization.</p>
+                  </div>
+                  <div>
+                    <div className="text-xs text-neutral-500 uppercase font-semibold mb-1">The Results</div>
+                    <p className="text-sm text-neutral-700">500K+ followers, $180K+ in brand deals, viral content success.</p>
+                  </div>
+                </div>
+                <Link to="/success-stories/sarah-chen">
+                  <Button variant="member" className="bg-red-600 hover:bg-red-700">READ FULL STORY</Button>
+                </Link>
+              </div>
+            </div>
           </motion.div>
 
           {/* CTA Section */}

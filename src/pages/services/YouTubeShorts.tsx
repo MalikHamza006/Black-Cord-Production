@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -194,15 +193,12 @@ const YouTubeShorts = () => {
   allow="autoplay; fullscreen; picture-in-picture"
   allowFullScreen
 ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       2.3M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Viral Hook Strategy</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Color Grade</h3>
                     <p className="text-black mb-4 flex-grow">This Short went viral with our signature hook formula, generating 2.3M views in 48 hours.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">YouTube Shorts</span>
@@ -229,15 +225,12 @@ const YouTubeShorts = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      TRENDING
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       1.8M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Algorithm Optimization</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Athlete Reel</h3>
                     <p className="text-black mb-4 flex-grow">Perfect timing and pacing that the YouTube algorithm loves, resulting in 1.8M views.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">YouTube Shorts</span>
@@ -264,15 +257,12 @@ const YouTubeShorts = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      MEGA VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       4.2M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Retention Mastery</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Nischa video in Ali Abdaal's style</h3>
                     <p className="text-black mb-4 flex-grow">Our highest-performing Short with 4.2M views and 95% retention rate.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">YouTube Shorts</span>

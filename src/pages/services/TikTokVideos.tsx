@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -190,15 +189,12 @@ const TikTokVideos = () => {
   allow="autoplay; fullscreen; picture-in-picture"
   allowFullScreen
 ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       3.2M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Trending Hook Formula</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Pink Load Trailer Video</h3>
                     <p className="text-black mb-4 flex-grow">This TikTok went viral with our signature hook strategy, generating 3.2M views in 24 hours.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">TikTok</span>
@@ -225,15 +221,12 @@ const TikTokVideos = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      TRENDING
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       2.8M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Algorithm Mastery</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Ali Abdaal style</h3>
                     <p className="text-black mb-4 flex-grow">Perfect timing and trending sounds that TikTok's algorithm loves, resulting in 2.8M views.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">TikTok</span>
@@ -260,15 +253,12 @@ const TikTokVideos = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      MEGA VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       5.1M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Engagement Maximizer</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Guillaume reel</h3>
                     <p className="text-black mb-4 flex-grow">Our highest-performing TikTok with 5.1M views and 96% engagement rate.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">TikTok</span>

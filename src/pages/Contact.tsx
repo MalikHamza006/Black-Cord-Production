@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, MessageCircle, Calendar, Play, Zap, Star, Users, TrendingUp, ArrowRight, Clock, CheckCircle, Video, Smartphone, Headphones, Check, Loader2, Target, Award } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 
 const quickActions = [
   {
@@ -73,52 +73,56 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [id]: value }));
     if (submitError) setSubmitError(null);
   };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitError(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError(null);
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        projectType: formData.projectType,
+        budget: formData.budget,
+        message: formData.message,
+      }),
+    });
 
-    const formspreeData = new FormData();
-    formspreeData.append("firstName", formData.firstName);
-    formspreeData.append("lastName", formData.lastName);
-    formspreeData.append("email", formData.email);
-    formspreeData.append("projectType", formData.projectType);
-    formspreeData.append("budget", formData.budget);
-    formspreeData.append("message", formData.message);
-    formspreeData.append("_subject", `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`);
-
-    try {
-      const response = await fetch("https://formspree.io/f/xaqzyekq", {
-        method: "POST",
-        body: formspreeData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          projectType: "",
-          budget: "",
-          message: ""
-        });
-        setTimeout(() => setIsSubmitted(false), 5000);
-      } else {
-        const errorData = await response.json();
-        setSubmitError(errorData.error || "Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      setSubmitError("Network error. Please check your connection and try again.");
-    } finally {
-      setIsSubmitting(false);
+    let data;
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
     }
-  };
 
+    if (response.ok) {
+      setIsSubmitted(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        projectType: "",
+        budget: "",
+        message: "",
+      });
+    } else {
+      setSubmitError(
+        data && (data.error || data.message)
+          ? data.error || data.message
+          : "Something went wrong. Please try again."
+      );
+    }
+  } catch (error) {
+    setSubmitError("Network error. Please check your connection and try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   return (
     <div className="min-h-screen bg-background osmo-bg">
       {/* Gradient Mesh Background */}
@@ -146,7 +150,6 @@ const Contact = () => {
         <div className="osmo-particle" style={{left: '90%', animationDelay: '15s'}}></div>
       </div>
 
-      <Navigation />
       <main className="pt-20 sm:pt-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           
@@ -598,6 +601,7 @@ const Contact = () => {
       </main>
     </div>
   );
-};
+
+ };
 
 export default Contact;

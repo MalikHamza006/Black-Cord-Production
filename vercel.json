@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/((?!assets|ascets|videos|case-studies|favicon.svg|logo.png|logo.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

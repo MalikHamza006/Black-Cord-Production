@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -190,15 +189,12 @@ const InstagramReels = () => {
   allow="autoplay; fullscreen; picture-in-picture"
   allowFullScreen
 ></iframe>
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       2.1M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Aesthetic Hook Strategy</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Sports Commercial Reel</h3>
                     <p className="text-black mb-4 flex-grow">This Reel went viral with our signature aesthetic hook, generating 2.1M views in 36 hours.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">Instagram Reels</span>
@@ -225,15 +221,12 @@ const InstagramReels = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      TRENDING
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       1.9M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Visual Storytelling</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Warehouse Creative Reel</h3>
                     <p className="text-black mb-4 flex-grow">Perfect visual narrative that Instagram's algorithm loves, resulting in 1.9M views.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">Instagram Reels</span>
@@ -260,15 +253,12 @@ const InstagramReels = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      MEGA VIRAL
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
                       3.8M views
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-black mb-2">Engagement Maximizer</h3>
+                    <h3 className="text-xl font-bold text-black mb-2">Guillaume reel</h3>
                     <p className="text-black mb-4 flex-grow">Our highest-performing Reel with 3.8M views and 92% engagement rate.</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-red-600 font-semibold">Instagram Reels</span>

@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -134,8 +133,6 @@ const Services = () => {
         <div className="osmo-particle" style={{left: '80%', animationDelay: '13s'}}></div>
         <div className="osmo-particle" style={{left: '90%', animationDelay: '15s'}}></div>
       </div>
-
-      <Navigation />
       
       <main className="pt-20 sm:pt-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">

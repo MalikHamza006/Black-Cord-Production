@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -190,16 +189,13 @@ const CashCowChannels = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      $500K+
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       2.8M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Passive Income Generator</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Cash Cow</span>
                     </div>
                     <p className="text-black mb-4">This video generated $500K+ in passive revenue through affiliate marketing and sponsorships.</p>
@@ -230,16 +226,13 @@ const CashCowChannels = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      $750K+
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       3.2M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Automated Revenue Stream</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Cash Cow</span>
                     </div>
                     <p className="text-black mb-4">This video created a fully automated income stream generating $750K+ in revenue.</p>
@@ -270,16 +263,13 @@ const CashCowChannels = () => {
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                     ></iframe>
-                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      $1.2M+
-                    </div>
                     <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm">
                       4.1M views
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-black">Million Dollar Video</h3>
+                      <h3 className="text-xl font-bold text-black">Chat GPT Cash Cow video</h3>
                       <span className="text-red-600 font-semibold text-sm bg-red-50 px-2 py-1 rounded">Cash Cow</span>
                     </div>
                     <p className="text-black mb-4">Our highest-earning video that generated over $1.2M in revenue through multiple income streams.</p>
